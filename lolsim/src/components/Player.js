@@ -2,7 +2,7 @@
 import './table.css'
 import {FaTimes} from 'react-icons/fa'
 
-const Player = ({row}) => {
+const Player = ({row, onDelete}) => {
     
     return (
             <tr {...row.getRowProps()}>

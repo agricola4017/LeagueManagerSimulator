@@ -9,7 +9,7 @@ import ButtonPanelTable from './ButtonPanelTable'
 import PageDirectoryTable from './PageDirectoryTable'
 import ColToggle from '../components/ColToggle'
 
-const Players = ( {players} ) => {
+const Players = ( {players, onDelete} ) => {
 
     const columns = useMemo(() => PlayerColumns, [])
     //use GROUPED_columns to group
@@ -76,7 +76,7 @@ const Players = ( {players} ) => {
                     page.map(row=> {
                         prepareRow(row)
                         return (
-                            <Player row={row} key={row.id}/>
+                            <Player row={row} key={row.id} onDelete={onDelete}/>
                         )
                     })
                 }
