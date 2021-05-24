@@ -7,7 +7,7 @@ const GlobalFilter = ({filter, setFilter}) => {
        setFilter(value || undefined)  
     }, 300)
     return (
-        <span>
+        <span className='span'>
             Search: {' '}
             <input value = {value || ''} 
             onChange= {e=> {

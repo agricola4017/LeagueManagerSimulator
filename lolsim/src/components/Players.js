@@ -1,11 +1,13 @@
 import Player from '../components/Player'
-import Button from './Button'
 import {PlayerColumns} from '../components/PlayerColumns'
 import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
 import  {useMemo } from 'react'
 import GlobalFilter from '../components/GlobalFilter'
 import './table.css'
 import ColumnFilter from '../components/ColumnFilter'
+import ButtonPanelTable from './ButtonPanelTable'
+import PageDirectoryTable from './PageDirectoryTable'
+import ColToggle from '../components/ColToggle'
 
 const Players = ( {players} ) => {
 
@@ -28,13 +30,22 @@ const Players = ( {players} ) => {
 
     const {getTableProps, getTableBodyProps, headerGroups, 
         footerGroups,page, nextPage, previousPage, canNextPage, canPreviousPage,
-        pageOptions, prepareRow, gotoPage, pageCount,state, setGlobalFilter} = tableInstance
+        pageOptions, prepareRow, gotoPage, pageCount, setPageSize, 
+        state, setGlobalFilter, allColumns, getToggleHideAllColumnsProps} = tableInstance
 
-    const { globalFilter } = state
-    const {pageIndex} = state
+    const { globalFilter, pageIndex, pageSize } = state
+
     return (
         <>
-        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+        <div className=''>
+            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} canPrev={canPreviousPage} canNext={canNextPage}/>
+            <ColToggle hideAll={getToggleHideAllColumnsProps} allColumns={allColumns}/>
+        </div>
+        <div>
+            <ButtonPanelTable canPrev={canPreviousPage} canNext={canNextPage}
+            pageCount={pageCount} goto={gotoPage} next={nextPage} prev={previousPage}/>
+            <PageDirectoryTable options={pageOptions.length} pageIndex={pageIndex} gotoPage={gotoPage} pageSize={pageSize} setPageSize={setPageSize}/>
+        </div>
         <table {...getTableProps()}>
             <thead >
                 {
@@ -58,8 +69,7 @@ const Players = ( {players} ) => {
                        
                     </tr>
                     ))
-                }
-                
+                }      
             </thead>
             <tbody {...getTableBodyProps()}>
                 {
@@ -95,21 +105,11 @@ const Players = ( {players} ) => {
             </tfoot>
         </table>
         <div>
-            <span>
-                Page{' '}
-                <strong>
-                    {pageIndex + 1} of {pageOptions.length}
-                </strong>{' '} 
-                <span style={{float:'right'}}>
-                    <Button class='button' onClick={() => gotoPage(0)} disable={!canPreviousPage} text={'<<'} />
-                    <Button class='button' onClick={() => previousPage()} disable={!canPreviousPage} text='Prev'/>
-                    <Button class='button' onClick={()=> nextPage()} disable={!canNextPage} text='Next' />
-                    <Button class='button' onClick={()=>gotoPage(pageCount-1)} disable={!canNextPage} text={'>>'} />
-                </span>
-            </span>
+            <ButtonPanelTable canPrev={canPreviousPage} canNext={canNextPage}
+            pageCount={pageCount} goto={gotoPage} next={nextPage} prev={previousPage}/> 
+            <PageDirectoryTable options={pageOptions.length} pageIndex={pageIndex} gotoPage={gotoPage} pageSize={pageSize} setPageSize={setPageSize}/>
         </div>
         </>
-        //{players.map( (player) => (<Player key={player.id} player={player} />))}
     )
 }
 
