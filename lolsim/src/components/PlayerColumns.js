@@ -1,4 +1,4 @@
-import ColumnFilter from './ColumnFilter'
+//import ColumnFilter from './ColumnFilter'
 
 export const PlayerColumns = [
     {
@@ -7,6 +7,16 @@ export const PlayerColumns = [
         accessor: 'name',
         //Filter: ColumnFilter,
         disableFilters: false
+    },
+    {
+        Header: 'Region',
+        Footer: 'Region',
+        accessor: 'region',
+    },
+    {
+        Header: 'Role',
+        Footer: 'Role', 
+        accessor: 'role,'
     },
     {
         Header: 'Age',

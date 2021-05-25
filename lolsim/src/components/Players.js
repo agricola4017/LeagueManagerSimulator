@@ -14,7 +14,7 @@ const Players = ( {players, onDelete} ) => {
     const columns = useMemo(() => PlayerColumns, [])
     //use GROUPED_columns to group
     
-    const data = useMemo(() => players, []) 
+    const data = useMemo(() => players, [players]) 
 
     const defaultColumn = useMemo(() => {
         return {

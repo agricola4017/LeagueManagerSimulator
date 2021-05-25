@@ -4,7 +4,7 @@ const ColToggle = ( {hideAll, allColumns}) => {
         {' '}
         | Toggle
         {
-            allColumns.filter(col=> col.Header!='Name').map(col=> (
+            allColumns.filter(col=> col.Header!=='Name').map(col=> (
                 <label>
                     {' '}
                     <input type='checkbox' {...col.getToggleHiddenProps()}/>

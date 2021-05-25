@@ -13,7 +13,7 @@ const Player = ({row, onDelete}) => {
                 })}
                 <td>
                 <FaTimes 
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => {onDelete(row.values); console.log(row)}}
                     style = {{flex:'center', color: 'red', cursor:'pointer'}}/>    
                 </td>
                 
@@ -23,11 +23,4 @@ const Player = ({row, onDelete}) => {
 /**
 
  */
-
-
-const onDelete = (id) => {
-    console.log(`delete ${id}`)
-    return 
-}
-
 export default Player
