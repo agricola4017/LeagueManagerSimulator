@@ -16,7 +16,7 @@ export const PlayerColumns = [
     {
         Header: 'Role',
         Footer: 'Role', 
-        accessor: 'role,'
+        accessor: 'role',
     },
     {
         Header: 'Age',
@@ -35,12 +35,6 @@ export const PlayerColumns = [
         Header: 'POT',
         Footer: 'POT',
         accessor: 'POT',
-        //Filter: ColumnFilter
-    },
-    {
-        Header: 'Country',
-        Footer: 'Country',
-        accessor: 'country',
         //Filter: ColumnFilter
     },
     {

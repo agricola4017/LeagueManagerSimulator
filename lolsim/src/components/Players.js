@@ -46,7 +46,7 @@ const Players = ( {players, onDelete} ) => {
             pageCount={pageCount} goto={gotoPage} next={nextPage} prev={previousPage}/>
             <PageDirectoryTable options={pageOptions.length} pageIndex={pageIndex} gotoPage={gotoPage} pageSize={pageSize} setPageSize={setPageSize}/>
         </div>
-        <table {...getTableProps()}>
+        <table className = 'table' {...getTableProps()}>
             <thead >
                 {
                     headerGroups.map((headerGroup)=> ( 

@@ -1,11 +1,11 @@
-const ColToggle = ( {hideAll, allColumns}) => {
+const ColToggle = ( { allColumns}) => {
     return (
         <span className='span'>
         {' '}
         | Toggle
         {
             allColumns.filter(col=> col.Header!=='Name').map(col=> (
-                <label>
+                <label key={col.Header}>
                     {' '}
                     <input type='checkbox' {...col.getToggleHiddenProps()}/>
                     {' '}
