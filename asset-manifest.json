@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/LeagueManagerSimulator/static/css/main.17513c55.chunk.css",
-    "main.js": "/LeagueManagerSimulator/static/js/main.40eba797.chunk.js",
-    "main.js.map": "/LeagueManagerSimulator/static/js/main.40eba797.chunk.js.map",
-    "runtime-main.js": "/LeagueManagerSimulator/static/js/runtime-main.82319a4f.js",
-    "runtime-main.js.map": "/LeagueManagerSimulator/static/js/runtime-main.82319a4f.js.map",
-    "static/js/2.86a85982.chunk.js": "/LeagueManagerSimulator/static/js/2.86a85982.chunk.js",
-    "static/js/2.86a85982.chunk.js.map": "/LeagueManagerSimulator/static/js/2.86a85982.chunk.js.map",
-    "static/js/3.7b0e16ea.chunk.js": "/LeagueManagerSimulator/static/js/3.7b0e16ea.chunk.js",
-    "static/js/3.7b0e16ea.chunk.js.map": "/LeagueManagerSimulator/static/js/3.7b0e16ea.chunk.js.map",
+    "main.css": "/LeagueManagerSimulator/static/css/main.49e6fac8.chunk.css",
+    "main.js": "/LeagueManagerSimulator/static/js/main.956140cf.chunk.js",
+    "main.js.map": "/LeagueManagerSimulator/static/js/main.956140cf.chunk.js.map",
+    "runtime-main.js": "/LeagueManagerSimulator/static/js/runtime-main.76fe674b.js",
+    "runtime-main.js.map": "/LeagueManagerSimulator/static/js/runtime-main.76fe674b.js.map",
+    "static/js/2.89f9ce30.chunk.js": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js",
+    "static/js/2.89f9ce30.chunk.js.map": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js.map",
+    "static/js/3.ee5874eb.chunk.js": "/LeagueManagerSimulator/static/js/3.ee5874eb.chunk.js",
+    "static/js/3.ee5874eb.chunk.js.map": "/LeagueManagerSimulator/static/js/3.ee5874eb.chunk.js.map",
     "index.html": "/LeagueManagerSimulator/index.html",
-    "static/css/main.17513c55.chunk.css.map": "/LeagueManagerSimulator/static/css/main.17513c55.chunk.css.map",
-    "static/js/2.86a85982.chunk.js.LICENSE.txt": "/LeagueManagerSimulator/static/js/2.86a85982.chunk.js.LICENSE.txt"
+    "static/css/main.49e6fac8.chunk.css.map": "/LeagueManagerSimulator/static/css/main.49e6fac8.chunk.css.map",
+    "static/js/2.89f9ce30.chunk.js.LICENSE.txt": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.82319a4f.js",
-    "static/js/2.86a85982.chunk.js",
-    "static/css/main.17513c55.chunk.css",
-    "static/js/main.40eba797.chunk.js"
+    "static/js/runtime-main.76fe674b.js",
+    "static/js/2.89f9ce30.chunk.js",
+    "static/css/main.49e6fac8.chunk.css",
+    "static/js/main.956140cf.chunk.js"
   ]
 }
