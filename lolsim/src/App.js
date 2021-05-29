@@ -61,11 +61,11 @@ function App() {
     <Router>
       <div className ='container'>
         <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer}  />
-        <Route path='/' exact render={(props) => (<> 
+        <Route path='/LeagueManagerSimulator' exact render={(props) => (<> 
           {showAddPlayer && <AddPlayer onAdd={addPlayer}/>}
         {players.length > 0 ? <Players players={players} onDelete={deletePlayer}/> : 'No players to show'}</>)}/>
       </div>
-      <Donut onChange={setShowDonut} showDonut={showDonut}/>
+      <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
       <Footer/>
       <Route path='/about' component={About} />
 
