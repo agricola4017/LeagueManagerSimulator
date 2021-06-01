@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/LeagueManagerSimulator/static/css/main.49e6fac8.chunk.css",
-    "main.js": "/LeagueManagerSimulator/static/js/main.abf3197c.chunk.js",
-    "main.js.map": "/LeagueManagerSimulator/static/js/main.abf3197c.chunk.js.map",
+    "main.js": "/LeagueManagerSimulator/static/js/main.4b1a6210.chunk.js",
+    "main.js.map": "/LeagueManagerSimulator/static/js/main.4b1a6210.chunk.js.map",
     "runtime-main.js": "/LeagueManagerSimulator/static/js/runtime-main.76fe674b.js",
     "runtime-main.js.map": "/LeagueManagerSimulator/static/js/runtime-main.76fe674b.js.map",
-    "static/js/2.89f9ce30.chunk.js": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js",
-    "static/js/2.89f9ce30.chunk.js.map": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js.map",
+    "static/js/2.1f3ae0cf.chunk.js": "/LeagueManagerSimulator/static/js/2.1f3ae0cf.chunk.js",
+    "static/js/2.1f3ae0cf.chunk.js.map": "/LeagueManagerSimulator/static/js/2.1f3ae0cf.chunk.js.map",
     "static/js/3.ee5874eb.chunk.js": "/LeagueManagerSimulator/static/js/3.ee5874eb.chunk.js",
     "static/js/3.ee5874eb.chunk.js.map": "/LeagueManagerSimulator/static/js/3.ee5874eb.chunk.js.map",
     "index.html": "/LeagueManagerSimulator/index.html",
     "static/css/main.49e6fac8.chunk.css.map": "/LeagueManagerSimulator/static/css/main.49e6fac8.chunk.css.map",
-    "static/js/2.89f9ce30.chunk.js.LICENSE.txt": "/LeagueManagerSimulator/static/js/2.89f9ce30.chunk.js.LICENSE.txt"
+    "static/js/2.1f3ae0cf.chunk.js.LICENSE.txt": "/LeagueManagerSimulator/static/js/2.1f3ae0cf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.76fe674b.js",
-    "static/js/2.89f9ce30.chunk.js",
+    "static/js/2.1f3ae0cf.chunk.js",
     "static/css/main.49e6fac8.chunk.css",
-    "static/js/main.abf3197c.chunk.js"
+    "static/js/main.4b1a6210.chunk.js"
   ]
 }
