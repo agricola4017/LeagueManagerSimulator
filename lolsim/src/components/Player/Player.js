@@ -1,8 +1,8 @@
 
-import './table.css'
-import {FaTimes} from 'react-icons/fa'
+import '../table.css'
+import {FaTimes, FaPenSquare, FaPhoneSquare} from 'react-icons/fa'
 
-const Player = ({row, onDelete}) => {
+const Player = ({row, onDelete, onUpdate}) => {
     
     return (
             <tr {...row.getRowProps()}>
@@ -15,6 +15,11 @@ const Player = ({row, onDelete}) => {
                 <FaTimes 
                     onClick={() => {onDelete(row.values); console.log(row)}}
                     style = {{flex:'center', color: 'red', cursor:'pointer'}}/>    
+                </td>
+                <td>
+                <FaPenSquare
+                    onClick={() => {onUpdate(row.id); console.log(row)}}
+                    style = {{flex:'center', color: 'blue', cursor:'pointer'}}/>    
                 </td>
                 
             </tr>

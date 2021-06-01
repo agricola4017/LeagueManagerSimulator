@@ -1,4 +1,4 @@
-import Button from './Button'
+import Button from '../Button'
 import PropTypes from 'prop-types'
 import {useLocation} from 'react-router-dom'
 

@@ -71,9 +71,6 @@ export const Donut = ({onChange, showDonut}) => {
     animate()
     
     return <>
-        {
-            (showDonut && onChange())
-        }
     </>
     
 }

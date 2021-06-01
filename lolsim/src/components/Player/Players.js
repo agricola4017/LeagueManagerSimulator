@@ -1,15 +1,15 @@
-import Player from '../components/Player'
-import {PlayerColumns} from '../components/PlayerColumns'
+import Player from './Player'
+import {PlayerColumns} from './PlayerColumns'
 import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
 import  {useMemo } from 'react'
-import GlobalFilter from '../components/GlobalFilter'
-import './table.css'
-import ColumnFilter from '../components/ColumnFilter'
-import ButtonPanelTable from './ButtonPanelTable'
+import GlobalFilter from '../tableComponents/GlobalFilter'
+import '../table.css'
+import ColumnFilter from '../tableComponents/ColumnFilter'
+import ButtonPanelTable from '../tableComponents/ButtonPanelTable'
 import PageDirectoryTable from './PageDirectoryTable'
-import ColToggle from '../components/ColToggle'
+import ColToggle from '../tableComponents/ColToggle'
 
-const Players = ( {players, onDelete} ) => {
+const Players = ( {players, onDelete, onUpdate} ) => {
 
     const columns = useMemo(() => PlayerColumns, [])
     //use GROUPED_columns to group
@@ -66,6 +66,10 @@ const Players = ( {players, onDelete} ) => {
                          <th>
                              Delete
                         </th>
+
+                        <th>
+                            Edit 
+                        </th>
                        
                     </tr>
                     ))
@@ -76,7 +80,7 @@ const Players = ( {players, onDelete} ) => {
                     page.map(row=> {
                         prepareRow(row)
                         return (
-                            <Player row={row} key={row.id} onDelete={onDelete}/>
+                            <Player row={row} key={row.id} onDelete={onDelete} onUpdate={onUpdate}/>
                         )
                     })
                 }
@@ -97,6 +101,10 @@ const Players = ( {players, onDelete} ) => {
                             }
                             <td>
                              Delete
+                            </td>
+
+                            <td>
+                            Edit
                             </td>
                         </tr>
                     ))
