@@ -1,4 +1,4 @@
-import Player from './Player'
+import PlayerRow from './PlayerRow'
 import {PlayerColumns} from './PlayerColumns'
 import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
 import  {useMemo } from 'react'
@@ -9,7 +9,7 @@ import ButtonPanelTable from '../tableComponents/ButtonPanelTable'
 import PageDirectoryTable from './PageDirectoryTable'
 import ColToggle from '../tableComponents/ColToggle'
 
-const Players = ( {players, onDelete, onUpdate} ) => {
+const PlayersTable = ( {players, onDelete, onUpdate} ) => {
 
     const columns = useMemo(() => PlayerColumns, [])
     //use GROUPED_columns to group
@@ -80,7 +80,7 @@ const Players = ( {players, onDelete, onUpdate} ) => {
                     page.map(row=> {
                         prepareRow(row)
                         return (
-                            <Player row={row} key={row.id} onDelete={onDelete} onUpdate={onUpdate}/>
+                            <PlayerRow row={row} key={row.id} onDelete={onDelete} onUpdate={onUpdate}/>
                         )
                     })
                 }
@@ -121,4 +121,4 @@ const Players = ( {players, onDelete, onUpdate} ) => {
     )
 }
 
-export default Players
+export default PlayersTable

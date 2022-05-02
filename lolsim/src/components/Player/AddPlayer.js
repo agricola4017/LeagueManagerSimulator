@@ -8,6 +8,8 @@ const AddPlayer = ({onAdd}) => {
     const[OVR, setOVR] = useState(20)
     const[POT, setPOT] = useState(100)
     const[region, setRegion] = useState('US')
+    const[askingFor] = useState(50)
+    const[KDA] = useState(0)
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -46,14 +48,8 @@ const AddPlayer = ({onAdd}) => {
         }
 
 
-        onAdd({name, role, age, OVR, POT, region})
+        onAdd({name, role, age, OVR, POT, region, askingFor, KDA})
 
-        setRole('MID')
-        setName('test')
-        setAge(17)
-        setOVR(20)
-        setPOT(100)
-        setRegion('US')
     }
     return (
         <div className = ''>
@@ -70,6 +66,7 @@ const AddPlayer = ({onAdd}) => {
                 <label>Region</label>
                 <select value={region} onChange={(e)=>setRegion(e.target.value)}>
                 {
+                    //region and role should be enums
                 ['US', 'KR', 'CN', 'EU'].map(region => (
                         <option key={region} value={region}>
                             {region}

@@ -68,7 +68,7 @@ export const Donut = ({onChange, showDonut}) => {
         }
 
         function moveCamera() {
-            const t = window.scrollY
+            //const t = window.scrollY
             
             torus.rotation.x +=0.05
             torus.rotation.y += 0.075
@@ -77,6 +77,7 @@ export const Donut = ({onChange, showDonut}) => {
 
         document.body.onscroll = moveCamera
 
+        /** 
         function addStar() {
         const geometry = new THREE.SphereGeometry(0.25, 24, 24)
         const material = new THREE.MeshStandardMaterial({color:0xffffff})
@@ -87,7 +88,7 @@ export const Donut = ({onChange, showDonut}) => {
         star.position.set(x,y,z)
         scene.add(star)
         }
-
+        */
         scene.background = null;
         animate()
     })

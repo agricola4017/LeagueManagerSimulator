@@ -1,9 +1,9 @@
 import Button from '../Button'
 import PropTypes from 'prop-types'
-import {useLocation} from 'react-router-dom'
+//import {useLocation} from 'react-router-dom'
 
 const Header = ({showAdd, onAdd}) => {
-    const location = useLocation()
+    //const location = useLocation()
     return (
         <header className='header'>
             <h1>Players</h1>

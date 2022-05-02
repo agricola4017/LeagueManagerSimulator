@@ -2,7 +2,7 @@
 import '../table.css'
 import {FaTimes, FaPenSquare, FaPhoneSquare} from 'react-icons/fa'
 
-const Player = ({row, onDelete, onUpdate}) => {
+const PlayerRow = ({row, onDelete, onUpdate}) => {
     
     return (
             <tr {...row.getRowProps()}>
@@ -21,6 +21,7 @@ const Player = ({row, onDelete, onUpdate}) => {
                     onClick={() => {onUpdate(row.id); console.log(row)}}
                     style = {{flex:'center', color: 'blue', cursor:'pointer'}}/>    
                 </td>
+                <td><FaPhoneSquare/></td>
                 
             </tr>
     )
@@ -28,4 +29,4 @@ const Player = ({row, onDelete, onUpdate}) => {
 /**
 
  */
-export default Player
+export default PlayerRow
