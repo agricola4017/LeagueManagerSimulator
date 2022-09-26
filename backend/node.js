@@ -1,12 +1,17 @@
+var express = require("express");
+let players = require('./Players')
+ //use the application off of express.
+ var app = express();
+ 
+ //define the route for "/"
+ app.get("/", function (request, response){
+     //show this file when the "/" is requested
+     response.sendFile(__dirname+"/index.html");
+     response.json(players.players)
+ });
+ 
+ //start the server
+ app.listen(8080);
+ 
+ console.log("Something awesome to happen at http://localhost:8080");
 
-const express = require('express')
-const app = express()
-const port = 3000
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})

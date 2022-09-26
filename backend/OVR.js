@@ -1,13 +1,13 @@
 export class OVR {
-    constructor (average) {
-        this.average = average
-        this.laning = average
-        this.teamfighting = average
-        this.economy = average
-        this.consistency = average
-        //this.teamwork = average
-        this.aggression = average
-        this.stamina = average
+    constructor (average, random) {
+        this.average = random ? randomNumber1(average) : average 
+        this.laning = random ? randomNumber1(average) : average 
+        this.teamfighting = random ? randomNumber1(average) : average 
+        this.economy = random ? randomNumber1(average) : average 
+        this.consistency = random ? randomNumber1(average) : average 
+        //this.teamwork = random ? randomNumber1(average) : average 
+        this.aggression = random ? randomNumber1(average) : average 
+        this.stamina = random ? randomNumber1(average) : average 
     }
 
     constructor (laning, teamfighting, economy, consistency, aggression, stamina) {
