@@ -17,6 +17,30 @@ const PlayerPage = () => {
       const [showAddPlayer, setShowAddPlayer] = useState(false)
       const [showDonut, setShowDonut] = useState(false)
     
+      const addPlayer = async(player) => {
+        setPlayers(players => [...players, player])
+      }
+
+      const deletePlayer = async (id) => {
+        setPlayers(players.filter((player) => player.id !== parseInt(id)))
+      }
+      
+
+      const updatePlayer = async (id) => {
+          console.log('update')
+      }
+
+    return (
+        <div className ='container'>
+            <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer}  />
+            {showAddPlayer && <AddPlayer onAdd={addPlayer}/>}
+            <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
+            {players.length > 0 ? <PlayersTable players={players} onDelete={deletePlayer} onUpdate={updatePlayer}/> : 'No players to show'}
+            <Footer/>
+        </div>
+    )
+}
+
       /* useEffect(() => {
         const getPlayers  = async() => {
           const playersFromServer = await fetchPlayers() 
@@ -60,28 +84,5 @@ const PlayerPage = () => {
         //console.log(players.filter((player) => player.key !== parseInt(id)))
       } 
     */
-      const addPlayer = async(player) => {
-        setPlayers(players => [...players, player])
-      }
-
-      const deletePlayer = async (id) => {
-        setPlayers(players.filter((player) => player.id !== parseInt(id)))
-      }
-      
-
-      const updatePlayer = async (id) => {
-          console.log('update')
-      }
-
-    return (
-        <div className ='container'>
-            <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer}  />
-            {showAddPlayer && <AddPlayer onAdd={addPlayer}/>}
-            <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
-            {players.length > 0 ? <PlayersTable players={players} onDelete={deletePlayer} onUpdate={updatePlayer}/> : 'No players to show'}
-            <Footer/>
-        </div>
-    )
-}
 
 export default PlayerPage

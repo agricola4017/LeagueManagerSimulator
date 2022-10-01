@@ -2,6 +2,7 @@ import {useState} from 'react'
 
 
 const AddPlayer = ({onAdd}) => {
+    const [showAdded, setShowAdded] = useState(false)
     const[role, setRole] = useState('MID')
     const[name, setName] = useState('')
     const[age, setAge] = useState(17)
@@ -52,8 +53,8 @@ const AddPlayer = ({onAdd}) => {
 
     }
     return (
-        <div className = ''>
-        <form className='add-form' onSubmit={onSubmit}>
+        <div>
+        <form className='add-form' onSubmit={ (e) => {onSubmit(e); setShowAdded(true)}}>
             <div className='form-control'> 
                 <label>Name</label>
                 <input type='text' placeholder = 'Name' value={name} onChange={(e)=>setName(e.target.value)}/>
@@ -95,6 +96,7 @@ const AddPlayer = ({onAdd}) => {
             </div>
             <input type='submit' className='button' value='Save Player' style = {{backgroundColor: 'red'}}></input>
         </form>
+        {/*{showAdded && <h3>Added {name}</h3>}*/}
         </div>
     )
 }

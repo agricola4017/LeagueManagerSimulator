@@ -12,7 +12,7 @@ export let currentStatus = "Free Agency";
 export let currentTime = function() {
    return `Year: ${time.year} Week: ${time.week} Day: ${time.day}`
 }
-let eventHandler = ['abc']
+let eventHandler = []
 export let game
 export let timeAdvance = async function() {
     if (await validAdvance()) { 
