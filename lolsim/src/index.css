@@ -11,6 +11,16 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  font-size: 10px;
+  font-family: inherit;
+  color: white
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 canvas {

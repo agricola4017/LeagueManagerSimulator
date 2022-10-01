@@ -1,3 +1,4 @@
+const { application } = require("express");
 var express = require("express");
 let players = require('./Players')
  //use the application off of express.
@@ -10,6 +11,7 @@ let players = require('./Players')
      response.json(players.players)
  });
  
+ app.put()
  //start the server
  app.listen(8080);
  

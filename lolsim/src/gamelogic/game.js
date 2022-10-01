@@ -7,12 +7,16 @@ let time = {
 let freeAgencyStatus = 0
 let regularSeasonStatus = 0
 let playoffsStatus = 0 
-export let currentStatus = "freeAgencyStatus";
 
-let eventHandler = []
+export let currentStatus = "Free Agency";
+export let currentTime = function() {
+   return `Year: ${time.year} Week: ${time.week} Day: ${time.day}`
+}
+let eventHandler = ['abc']
 export let game
 export let timeAdvance = async function() {
     if (await validAdvance()) { 
+        console.log(`past validAdvance, ${time.day}`)
         if (time.day < 7) {
             time.day++
         } else {
@@ -32,12 +36,21 @@ export let timeAdvance = async function() {
     }
 }
 
-let timeAdvanceCheck = 10
+const timeAdvanceCheck = 100
+let it = 0
+const lockout = 30
 let validAdvance = async function() {
     if (eventHandler.length === 0) {
-        return
+        console.log("proceed event q empty")
+        return true
     } else {
-        return setTimeout(validAdvance(), timeAdvanceCheck)
+        it++
+        console.log("stuck", it)
+        if (it === lockout) {
+            it = 0
+            return false
+        }
+        setTimeout(validAdvance, timeAdvanceCheck)
     }
 }
 
@@ -54,7 +67,7 @@ let playoffs = function() {
 }
 
 let recursiveFunction = async function(funct, timeOut, parameters) {
-    if (eventHandler.length == 0) {
+    if (eventHandler.length === 0) {
         return 
     } else {
         return setTimeout(funct(...parameters), timeOut)
