@@ -11,3 +11,12 @@ export let randomNumberCustom = function(startBound, range) {
     return Math.floor(Math.random(bound)) + startBound
 }
 
+export let randomizeIfNullExcl = (val, bound) => {
+    return (val !== null ? val : randomNumber0(bound))
+}
+export let randomizeIfNullIncl = (val, bound) => {
+    return (val !== null ? val : randomNumber1(bound))
+}
+export let randomizeIfNullCustom = (val, bound1, bound2) => {
+    return (val !== null ? val : randomNumberCustom(bound1, bound2))
+}

@@ -1,6 +1,11 @@
 import {useState} from 'react'
+import { Player } from '../../data/Player'
 
 
+/**
+ * 
+ * To-do: add animation after save player
+ */
 const AddPlayer = ({onAdd}) => {
     const [showAdded, setShowAdded] = useState(false)
     const[role, setRole] = useState('MID')
@@ -48,8 +53,8 @@ const AddPlayer = ({onAdd}) => {
             setPOT(100)
         }
 
-
-        onAdd({name, role, age, OVR, POT, region, askingFor, KDA})
+        let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor}
+        onAdd(new Player(name, {optional}))
 
     }
     return (

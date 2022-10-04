@@ -7,12 +7,15 @@ import AddPlayer from './AddPlayer'
 import Footer from './Footer'
 import {tempPlayers} from './objects/tempPlayers.js'
 import {useState} from 'react'
+import { loadPlayerJSON } from '../../data/loadJSON'
 
 
 const PlayerPage = () => {
 
+    let initPlayers = loadPlayerJSON(tempPlayers)
+
     const [players, setPlayers] = useState(
-        tempPlayers, []
+        initPlayers, []
       )
       const [showAddPlayer, setShowAddPlayer] = useState(false)
       const [showDonut, setShowDonut] = useState(false)
@@ -22,13 +25,13 @@ const PlayerPage = () => {
       }
 
       const deletePlayer = async (id) => {
-        players.splice(players[id], 1)
-        setPlayers(players)
+        players.splice(id, 1)
+        setPlayers([...players])
       }
       
 
       const updatePlayer = async (id) => {
-          console.log('update')
+          setShowAddPlayer(true)
       }
 
     return (
