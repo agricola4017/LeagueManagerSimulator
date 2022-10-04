@@ -13,7 +13,7 @@ const PlayerRow = ({row, onDelete, onUpdate}) => {
                 })}
                 <td>
                 <FaTimes 
-                    onClick={() => {onDelete(row.values); console.log(row)}}
+                    onClick={() => {onDelete(row.id); console.log(row)}}
                     style = {{flex:'center', color: 'red', cursor:'pointer'}}/>    
                 </td>
                 <td>

@@ -22,8 +22,10 @@ const PlayersTable = ( {players, onDelete, onUpdate} ) => {
         }
     }, [])
 
+    const autoResetPage = false;
+
     const tableInstance = useTable({
-        columns, data,  defaultColumn //defCol shortcuts filter prop in playerocls
+        columns, data,  defaultColumn, autoResetPage //defCol shortcuts filter prop in playerocls
     },useFilters, useGlobalFilter, useSortBy, usePagination)
 
     //players = JSON.parse(JSON.stringify(players))

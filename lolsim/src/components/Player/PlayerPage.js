@@ -22,7 +22,8 @@ const PlayerPage = () => {
       }
 
       const deletePlayer = async (id) => {
-        setPlayers(players.filter((player) => player.id !== parseInt(id)))
+        players.splice(players[id], 1)
+        setPlayers(players)
       }
       
 
