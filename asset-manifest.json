@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/LeagueManagerSimulator/static/css/main.2a3d44a2.css",
+    "main.js": "/LeagueManagerSimulator/static/js/main.6614fe44.js",
+    "static/js/787.0904e164.chunk.js": "/LeagueManagerSimulator/static/js/787.0904e164.chunk.js",
+    "index.html": "/LeagueManagerSimulator/index.html",
+    "main.2a3d44a2.css.map": "/LeagueManagerSimulator/static/css/main.2a3d44a2.css.map",
+    "main.6614fe44.js.map": "/LeagueManagerSimulator/static/js/main.6614fe44.js.map",
+    "787.0904e164.chunk.js.map": "/LeagueManagerSimulator/static/js/787.0904e164.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2a3d44a2.css",
+    "static/js/main.6614fe44.js"
+  ]
+}
