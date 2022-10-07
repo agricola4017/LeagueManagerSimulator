@@ -4,8 +4,20 @@ export let loadPlayerJSON = function(obj) {
     let players = []
 
     obj.forEach(e => {
-        players.push(new Player(e.name, e.age, e.region, e.role, e.OVR, e.POT))
+        let optional = {"age":e.age, "region": e.region, "role": e.role, "OVR": e.OVR, "POT": e.POT, "askingFor": e.askingFor}
+        players.push(new Player(e.name, optional))
     });
 
     return players
+}
+
+export let loadTeamJSON = function(obj) {
+    let teams = []
+    
+    obj.forEach(e => {
+        //let optional = {"age":e.age, "region": e.region, "role": e.role, "OVR": e.OVR, "POT": e.POT, "askingFor": e.askingFor}
+        teams.push(e)
+    });
+
+    return teams
 }

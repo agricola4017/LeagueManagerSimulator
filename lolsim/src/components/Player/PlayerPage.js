@@ -1,10 +1,9 @@
-
-import PlayersTable from './PlayersTable'
+import Table from '../tableComponents/Table'
 import Header from './Header'
 import {Donut} from '../Donut'
 import AddPlayer from './AddPlayer'
-
-import Footer from './Footer'
+import { PlayerColumns } from './PlayerColumns'
+import Footer from '../Footer'
 import {tempPlayers} from './objects/tempPlayers.js'
 import {useState} from 'react'
 import { loadPlayerJSON } from '../../data/loadJSON'
@@ -30,16 +29,22 @@ const PlayerPage = () => {
       }
       
 
-      const updatePlayer = async (id) => {
-          setShowAddPlayer(true)
+      const updatePlayer = async (playerValues) => {
+        setShowAddPlayer(true)
+        playerParams["changed"] = true
+        playerParams["role"] = playerValues["role"]
+        
+        console.log(playerParams)
       }
+
+      let playerParams={changed: false}
 
     return (
         <div className ='container'>
-            <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer}  />
-            {showAddPlayer && <AddPlayer onAdd={addPlayer}/>}
+            <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer} />
+            {showAddPlayer && <AddPlayer onAdd={addPlayer} playerParams={playerParams} setShowAddPlayer={setShowAddPlayer}/>}
             <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
-            {players.length > 0 ? <PlayersTable players={players} onDelete={deletePlayer} onUpdate={updatePlayer}/> : 'No players to show'}
+            {players.length > 0 ? <Table elements={players} onDelete={deletePlayer} onUpdate={updatePlayer} tableColumns={PlayerColumns}/> : 'No players to show'}
             <Footer/>
         </div>
     )

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { Player } from '../../data/Player'
 
 
@@ -6,8 +6,17 @@ import { Player } from '../../data/Player'
  * 
  * To-do: add animation after save player
  */
-const AddPlayer = ({onAdd}) => {
-    const [showAdded, setShowAdded] = useState(false)
+const AddPlayer = ({onAdd, playerParams, setShowAddPlayer}) => {
+
+    const[formParams, setFormParams] = useState(playerParams)
+
+    useEffect(() => {
+        if (playerParams["changed"]) {
+            setRole(playerParams["role"])
+            playerParams["changed"] = false;
+        }
+    })
+
     const[role, setRole] = useState('MID')
     const[name, setName] = useState('')
     const[age, setAge] = useState(17)
@@ -15,7 +24,7 @@ const AddPlayer = ({onAdd}) => {
     const[POT, setPOT] = useState(100)
     const[region, setRegion] = useState('US')
     const[askingFor] = useState(50)
-    const[KDA] = useState(0)
+    //const[KDA] = useState(0)
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -54,12 +63,12 @@ const AddPlayer = ({onAdd}) => {
         }
 
         let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor}
-        onAdd(new Player(name, {optional}))
+        onAdd(new Player(name, optional))
 
     }
     return (
         <div>
-        <form className='add-form' onSubmit={ (e) => {onSubmit(e); setShowAdded(true)}}>
+        <form className='add-form' onSubmit={ (e) => {onSubmit(e); setShowAddPlayer(false)}}>
             <div className='form-control'> 
                 <label>Name</label>
                 <input type='text' placeholder = 'Name' value={name} onChange={(e)=>setName(e.target.value)}/>

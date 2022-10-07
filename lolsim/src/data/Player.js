@@ -4,9 +4,6 @@ import { randomizeIfNullIncl, randomizeIfNullCustom, randomNumber1} from "./func
 export class Player {
 
     constructor (name, optional) {
-        console.log(arguments)
-        console.log(optional)
-        console.log(optional.region)
         this.name = name
         this.age = randomizeIfNullCustom(optional["age"], 18, 30)
         this.region = optional["role"] !== null ? optional["region"] : regionEnum[randomNumber1(Object.keys(regionEnum).length)]

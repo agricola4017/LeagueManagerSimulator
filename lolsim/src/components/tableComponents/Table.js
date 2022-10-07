@@ -1,5 +1,4 @@
-import PlayerRow from './PlayerRow'
-import {PlayerColumns} from './PlayerColumns'
+import Row from './Row'
 import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
 import  {useMemo } from 'react'
 import GlobalFilter from '../tableComponents/GlobalFilter'
@@ -9,13 +8,9 @@ import ButtonPanelTable from '../tableComponents/ButtonPanelTable'
 import PageDirectoryTable from './PageDirectoryTable'
 import ColToggle from '../tableComponents/ColToggle'
 
-/**
- * 
- * need to generalize PlayersTable and use as a generic custom component
- */
-const Table = ( {elements, onDelete, onUpdate} ) => {
+const Table = ( {elements, onDelete, onUpdate, tableColumns} ) => {
 
-    const columns = useMemo(() => PlayerColumns, [])
+    const columns = useMemo(() => tableColumns, [])
     //use GROUPED_columns to group
     
     const data = useMemo(() => elements, [elements]) 
@@ -86,7 +81,7 @@ const Table = ( {elements, onDelete, onUpdate} ) => {
                     page.map(row=> {
                         prepareRow(row)
                         return (
-                            <PlayerRow row={row} key={row.id} onDelete={onDelete} onUpdate={onUpdate}/>
+                            <Row row={row} key={row.id} onDelete={onDelete} onUpdate={onUpdate}/>
                         )
                     })
                 }
