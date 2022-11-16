@@ -1,7 +1,7 @@
 let time = {
     year: 0,
     week: 1,
-    day: 0,
+    day: 1,
 }
 
 let freeAgencyStatus = 0
@@ -20,7 +20,7 @@ export let timeAdvance = async function() {
         if (time.day < 7) {
             time.day++
         } else {
-            time.day = 0
+            time.day = 1
             time.week++
         }
         if (time.week === 1 && freeAgencyStatus === 0) {

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useState} from 'react'
 import { Player } from '../../data/Player'
 
 
@@ -6,24 +6,24 @@ import { Player } from '../../data/Player'
  * 
  * To-do: add animation after save player
  */
-const AddPlayer = ({onAdd, playerParams, setShowAddPlayer}) => {
+const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
 
-    const[formParams, setFormParams] = useState(playerParams)
+    //rewrite this
+    let defaultRole = playerParams!=null && playerParams["role"]!=null ? playerParams["role"] : "MID"
+    let defaultName = playerParams!=null && playerParams["name"]!=null ? playerParams["name"] : ""
+    let defaultAge = playerParams!=null && playerParams["age"]!=null ? playerParams["age"] : "17"
+    let defaultOVR = playerParams!=null && playerParams["OVR"]!=null ? playerParams["OVR"] : "20"
+    let defaultPOT = playerParams!=null && playerParams["POT"]!=null ? playerParams["POT"] : "100"
+    let defaultRegion = playerParams!=null && playerParams["region"]!=null ? playerParams["region"] : "US"
+    let defaultAskingFor = playerParams!=null && playerParams["askingFor"]!=null ? playerParams["askingFor"] : "50"
 
-    useEffect(() => {
-        if (playerParams["changed"]) {
-            setRole(playerParams["role"])
-            playerParams["changed"] = false;
-        }
-    })
-
-    const[role, setRole] = useState('MID')
-    const[name, setName] = useState('')
-    const[age, setAge] = useState(17)
-    const[OVR, setOVR] = useState(20)
-    const[POT, setPOT] = useState(100)
-    const[region, setRegion] = useState('US')
-    const[askingFor] = useState(50)
+    const[role, setRole] = useState(defaultRole)
+    const[name, setName] = useState(defaultName)
+    const[age, setAge] = useState(defaultAge)
+    const[OVR, setOVR] = useState(defaultOVR)
+    const[POT, setPOT] = useState(defaultPOT)
+    const[region, setRegion] = useState(defaultRegion)
+    const[askingFor] = useState(defaultAskingFor)
     //const[KDA] = useState(0)
 
     const onSubmit = (e) => {

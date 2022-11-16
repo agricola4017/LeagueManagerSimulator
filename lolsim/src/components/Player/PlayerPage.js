@@ -5,7 +5,7 @@ import AddPlayer from './AddPlayer'
 import { PlayerColumns } from './PlayerColumns'
 import Footer from '../Footer'
 import {tempPlayers} from './objects/tempPlayers.js'
-import {useState} from 'react'
+import {useReducer, useState} from 'react'
 import { loadPlayerJSON } from '../../data/loadJSON'
 
 
@@ -30,19 +30,27 @@ const PlayerPage = () => {
       
 
       const updatePlayer = async (playerValues) => {
+        //updatePlayerParams({changed: true})
+        updatePlayerParams({role: playerValues["role"]})
+        updatePlayerParams({name: playerValues["name"]})
+        updatePlayerParams({age: playerValues["age"]})
+        updatePlayerParams({OVR: playerValues["OVR"]})
+        updatePlayerParams({POT: playerValues["POT"]})
+        updatePlayerParams({region: playerValues["region"]})
         setShowAddPlayer(true)
-        playerParams["changed"] = true
-        playerParams["role"] = playerValues["role"]
-        
-        console.log(playerParams)
+      
+        //console.log(playerParams)
+        //updatePlayerParams({changed: false})
       }
 
-      let playerParams={changed: false}
+      const initPlayerParams = {changed: false}
+      const [playerParams, updatePlayerParams] = useReducer( (state, updates) => 
+        ({...state, ...updates}), {})
 
     return (
         <div className ='container'>
             <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer} />
-            {showAddPlayer && <AddPlayer onAdd={addPlayer} playerParams={playerParams} setShowAddPlayer={setShowAddPlayer}/>}
+            {showAddPlayer && <AddPlayer onAdd={addPlayer} onUpdate={updatePlayer} playerParams={playerParams} setShowAddPlayer={setShowAddPlayer}/>}
             <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
             {players.length > 0 ? <Table elements={players} onDelete={deletePlayer} onUpdate={updatePlayer} tableColumns={PlayerColumns}/> : 'No players to show'}
             <Footer/>
