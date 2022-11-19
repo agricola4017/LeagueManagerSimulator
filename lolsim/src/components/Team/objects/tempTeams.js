@@ -1,7 +1,7 @@
 export let tempTeams = [
     {
         position: 0,
-        name: 'TSM',
+        name: 'UNC',
         region: "NA",
         wins: 0,
         losses: 0,

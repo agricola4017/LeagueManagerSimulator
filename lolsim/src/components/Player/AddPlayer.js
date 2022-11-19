@@ -1,5 +1,6 @@
 import { useState} from 'react'
 import { Player } from '../../data/Player'
+import { playerAttributesEnum } from '../../data/Enums'
 
 
 /**
@@ -9,21 +10,31 @@ import { Player } from '../../data/Player'
 const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
 
     //rewrite this
-    let defaultRole = playerParams!=null && playerParams["role"]!=null ? playerParams["role"] : "MID"
-    let defaultName = playerParams!=null && playerParams["name"]!=null ? playerParams["name"] : ""
-    let defaultAge = playerParams!=null && playerParams["age"]!=null ? playerParams["age"] : "17"
-    let defaultOVR = playerParams!=null && playerParams["OVR"]!=null ? playerParams["OVR"] : "20"
-    let defaultPOT = playerParams!=null && playerParams["POT"]!=null ? playerParams["POT"] : "100"
-    let defaultRegion = playerParams!=null && playerParams["region"]!=null ? playerParams["region"] : "US"
-    let defaultAskingFor = playerParams!=null && playerParams["askingFor"]!=null ? playerParams["askingFor"] : "50"
+    let defaultAttribute = {
+        "role": "MID",
+        "name": "",
+        "age": "17",
+        "OVR": "20",
+        "POT": "100",
+        "region": "US",
+        "askingFor": "50",
+    }
 
-    const[role, setRole] = useState(defaultRole)
-    const[name, setName] = useState(defaultName)
-    const[age, setAge] = useState(defaultAge)
-    const[OVR, setOVR] = useState(defaultOVR)
-    const[POT, setPOT] = useState(defaultPOT)
-    const[region, setRegion] = useState(defaultRegion)
-    const[askingFor] = useState(defaultAskingFor)
+    let updatePlayer = false
+    Object.values(playerAttributesEnum).forEach((attribute) => {
+        if (playerParams != null && playerParams[attribute]!= null) {
+            defaultAttribute[attribute] = playerParams[attribute]
+            updatePlayer=true
+        }
+    });
+
+    const[role, setRole] = useState(defaultAttribute["role"])
+    const[name, setName] = useState(defaultAttribute["name"])
+    const[age, setAge] = useState(defaultAttribute["age"])
+    const[OVR, setOVR] = useState(defaultAttribute["OVR"])
+    const[POT, setPOT] = useState(defaultAttribute["POT"])
+    const[region, setRegion] = useState(defaultAttribute["region"])
+    const[askingFor] = useState(defaultAttribute["askingFor"])
     //const[KDA] = useState(0)
 
     const onSubmit = (e) => {
@@ -50,6 +61,8 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
             setOVR(0)
         } else if (OVR > 100) {
             setOVR(100)
+        } else if (OVR > POT) {
+            setOVR(POT)
         }
 
         //fix POT
@@ -63,8 +76,12 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
         }
 
         let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor}
-        onAdd(new Player(name, optional))
 
+        if (updatePlayer) {
+            onUpdate(new Player(name, optional), playerParams["id"])
+        } else {
+            onAdd(new Player(name, optional))
+        }
     }
     return (
         <div>

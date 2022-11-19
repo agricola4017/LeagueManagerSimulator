@@ -24,3 +24,6 @@ table th, tfoot td {
   color: white;
 }
 
+table td {
+  font-size: 12px
+}

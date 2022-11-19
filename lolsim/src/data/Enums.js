@@ -13,4 +13,15 @@ export const roleEnum = {
     2: "MID",
     3: "ADC", 
     4: "SPT"
+
+}
+
+export const playerAttributesEnum = {
+    0: "name",
+    1: "role",
+    2: "age",
+    3: "OVR",
+    4: "POT",
+    5: "region",
+    6: "askingFor"
 }
