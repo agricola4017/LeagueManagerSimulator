@@ -17,28 +17,8 @@ to dos
 
 6. OVR/POT stat object
 
-
-
-temporary things (need 2 be fixed later)
-
-	- 2-3 teams
-	- skip free agency
-	- 
-
-
-
-
-low prio
-
-* game log
-
-* stats
-
-* etc...
-
-current TODO:
-storing data on user session, reloading doesnt reset
-game logic
+https://docs.google.com/document/d/1UMttzIG1bKlf3jJqse4HXbamJX6QaTJdgCzPKhDVKfY/edit?usp=sharing
+document on plans 
 
 // NO LONGER BEING WORKED ON for now
 proper fetch calls for delete/add/edit
