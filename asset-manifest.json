@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/LeagueManagerSimulator/static/css/main.2a3d44a2.css",
-    "main.js": "/LeagueManagerSimulator/static/js/main.72672c08.js",
+    "main.css": "/LeagueManagerSimulator/static/css/main.825791dd.css",
+    "main.js": "/LeagueManagerSimulator/static/js/main.288c522b.js",
     "static/js/787.0904e164.chunk.js": "/LeagueManagerSimulator/static/js/787.0904e164.chunk.js",
     "index.html": "/LeagueManagerSimulator/index.html",
-    "main.2a3d44a2.css.map": "/LeagueManagerSimulator/static/css/main.2a3d44a2.css.map",
-    "main.72672c08.js.map": "/LeagueManagerSimulator/static/js/main.72672c08.js.map",
+    "main.825791dd.css.map": "/LeagueManagerSimulator/static/css/main.825791dd.css.map",
+    "main.288c522b.js.map": "/LeagueManagerSimulator/static/js/main.288c522b.js.map",
     "787.0904e164.chunk.js.map": "/LeagueManagerSimulator/static/js/787.0904e164.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2a3d44a2.css",
-    "static/js/main.72672c08.js"
+    "static/css/main.825791dd.css",
+    "static/js/main.288c522b.js"
   ]
 }
