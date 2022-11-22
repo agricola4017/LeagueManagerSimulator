@@ -1,5 +1,3 @@
-import { randomNumber0, randomNumber1 } from "./functions"
-
 export const regionEnum = {
     0: "NA",
     1: "EU",
@@ -23,5 +21,12 @@ export const playerAttributesEnum = {
     3: "OVR",
     4: "POT",
     5: "region",
-    6: "askingFor"
+    6: "askingFor",
+    7: "team"
+}
+
+export const teamEnum = {
+    0: "Free Agent",
+    1: "T1",
+    2: "UNC"
 }

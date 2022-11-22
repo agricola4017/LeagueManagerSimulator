@@ -18,6 +18,7 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
         "POT": "100",
         "region": "US",
         "askingFor": "50",
+        "team": "F/A",
     }
 
     let updatePlayer = false
@@ -35,6 +36,7 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
     const[POT, setPOT] = useState(defaultAttribute["POT"])
     const[region, setRegion] = useState(defaultAttribute["region"])
     const[askingFor] = useState(defaultAttribute["askingFor"])
+    const[team, setTeam] = useState(defaultAttribute["team"])
     //const[KDA] = useState(0)
 
     const onSubmit = (e) => {
@@ -75,7 +77,7 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
             setPOT(100)
         }
 
-        let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor}
+        let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor, "team": team}
 
         if (updatePlayer) {
             onUpdate(new Player(name, optional), playerParams["id"])
@@ -124,6 +126,17 @@ const AddPlayer = ({onAdd, onUpdate, playerParams, setShowAddPlayer}) => {
             <div className='form-control'> 
                 <label>POT</label>
                 <input className='inputnumber' type='number' placeholder = 'POT' value={POT} onChange={(e)=>setPOT(e.target.value)}/>
+            </div>
+            <div className='form-control'> 
+                <label>Team</label>
+                <select value={team} onChange={(e)=>setTeam(e.target.value)}>
+                {
+                ['F/A', 'T1', 'UNC'].map(team => (
+                        <option key={team} value={team}>
+                            {team}
+                        </option>
+                ))}
+                </select>
             </div>
             <input type='submit' className='button' value='Save Player' style = {{backgroundColor: 'red'}}></input>
         </form>

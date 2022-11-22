@@ -1,9 +1,9 @@
 const ColumnFilter = ({column}) => {
     const {filterValue, setFilter} = column
     return (
-        <span>
-            Search: {' '}
-            <input value = {filterValue || ''} 
+        //Search: {' '}
+        <span >
+            <input class="inline" value = {filterValue || ''} 
             onChange= {
                 e=> { 
                     //add multiple filtering, special numerical filtering

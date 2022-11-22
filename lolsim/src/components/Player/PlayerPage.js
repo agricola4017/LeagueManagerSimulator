@@ -36,6 +36,7 @@ const PlayerPage = () => {
         updatePlayerParams({OVR: playerValues["OVR"]})
         updatePlayerParams({POT: playerValues["POT"]})
         updatePlayerParams({region: playerValues["region"]})
+        updatePlayerParams({team: playerValues["team"]})
         updatePlayerParams({id : PlayerId})
         setPlayerParams({...playerParams})
         setShowAddPlayer(true)

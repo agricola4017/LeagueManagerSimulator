@@ -7,7 +7,8 @@ export let tempPlayers = [
         POT: 80,
         region: 'EU',
         askingFor: 100,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     }, 
     {
         name: 'Bob',
@@ -17,7 +18,8 @@ export let tempPlayers = [
         POT: 40,
         region: 'USA',
         askingFor: 50,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'David',
@@ -27,7 +29,8 @@ export let tempPlayers = [
         POT: 30,
         region: 'USA',
         askingFor: 25,
-        KDA: 0.00
+        KDA: 0.00, 
+        team: 'F/A'
     }, 
     {
         name: 'Bonnie',     
@@ -37,7 +40,8 @@ export let tempPlayers = [
         POT: 80,
         region: 'USA',
         askingFor: 75,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     }, 
     {
         name: 'Daniel',
@@ -47,8 +51,8 @@ export let tempPlayers = [
         POT: 90,
         region: 'USA',
         askingFor: 60,
-        KDA: 0.00
-        
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Daniel2',
@@ -58,7 +62,8 @@ export let tempPlayers = [
         POT: 90,
         region: 'USA',
         askingFor: 60,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Daniel3',
@@ -68,7 +73,8 @@ export let tempPlayers = [
         POT: 90,
         region: 'USA',
         askingFor: 60,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Bob4',
@@ -78,7 +84,8 @@ export let tempPlayers = [
         POT: 40,
         region: 'USA',
         askingFor: 50,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Bob4',
@@ -88,7 +95,8 @@ export let tempPlayers = [
         POT: 40,
         region: 'USA',
         askingFor: 50,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Bonnie3',     
@@ -98,7 +106,8 @@ export let tempPlayers = [
         POT: 80,
         region: 'USA',
         askingFor: 75,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
     },
     {
         name: 'Daniel20',
@@ -108,7 +117,8 @@ export let tempPlayers = [
         POT: 90,
         region: 'USA',
         askingFor: 60,
-        KDA: 0.00
+        KDA: 0.00,
+        team: 'F/A'
         
     },
 ]

@@ -18,7 +18,7 @@ const Row = ({row, onDelete, onUpdate}) => {
                 </td>
                 <td>
                 <FaPenSquare
-                    onClick={() => {onUpdate(row.values); console.log(row)}}
+                    onClick={() => {onUpdate(row.values, row.id); console.log(row)}}
                     style = {{flex:'center', color: 'blue', cursor:'pointer'}}/>    
                 </td>
                 <td><FaPhoneSquare/></td>

@@ -10,7 +10,7 @@ import ColToggle from '../tableComponents/ColToggle'
 
 const Table = ( {elements, onDelete, onUpdate, tableColumns} ) => {
 
-    const columns = useMemo(() => tableColumns, [])
+    const columns = useMemo(() => tableColumns, [tableColumns])
     //use GROUPED_columns to group
     
     const data = useMemo(() => elements, [elements]) 

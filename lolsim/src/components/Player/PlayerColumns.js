@@ -51,6 +51,11 @@ export const PlayerColumns = [
         Cell: ({value}) => {return `${value.toFixed(2)}`},
         //Filter: ColumnFilter
     },
+    {
+        Header: 'Team',
+        Footer: 'Team',
+        accessor: 'team'
+    },
 ]
 
 /* export const GROUPED_COLUMNS = [ 
