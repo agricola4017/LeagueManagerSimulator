@@ -3,7 +3,7 @@ const ColumnFilter = ({column}) => {
     return (
         //Search: {' '}
         <span >
-            <input class="inline" value = {filterValue || ''} 
+            <input className="inline" value = {filterValue || ''} 
             onChange= {
                 e=> { 
                     //add multiple filtering, special numerical filtering
