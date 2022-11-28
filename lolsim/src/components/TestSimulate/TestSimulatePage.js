@@ -5,6 +5,8 @@ const TestSimulatePage = () => {
 
     let playerStats = window.playerStats
     let teamStats = window.teamStats
+    let player1OVR = Array.from(window.players1.values()).map(e=>e.getOVR())
+    let player2OVR = Array.from(window.players2.values()).map(e=>e.getOVR())
 
     let style1 = teamStats[0]["win"] ? {color:"green"} : {}
     let style2 = teamStats[1]["win"] ? {color:"green"} : {}
@@ -68,6 +70,47 @@ const TestSimulatePage = () => {
                     }
                 </tbody>
             </table>
+
+            <br></br>
+
+            { <table> 
+                <tbody>
+                    <tr>
+                        <td>name</td>
+                        <td>role</td>
+                        <td>agg</td>
+                        <td>cons</td>
+                        <td>lane</td>
+                        <td>econ</td>
+                        <td>name</td>
+                        <td>role</td>
+                        <td>agg</td>
+                        <td>cons</td>
+                        <td>lane</td>
+                        <td>econ</td>
+                    </tr>
+                    {
+                    [0, 1, 2, 3, 4].map( (i) => (
+                        <tr key={"OVR"+i}>
+                            
+                            <td>team1player{i}</td>
+                            <td>{roleEnum[i]}</td>
+                            <td>{player1OVR[i].getAggression()}</td>
+                            <td>{player1OVR[i].getConsistency()}</td>
+                            <td>{player1OVR[i].getLaning()}</td>
+                            <td>{player1OVR[i].getEconomy()}</td>
+
+                            <td>team2player{i}</td>
+                            <td>{roleEnum[i]}</td>
+                            <td>{player2OVR[i].getAggression()}</td>
+                            <td>{player2OVR[i].getConsistency()}</td>
+                            <td>{player2OVR[i].getLaning()}</td>
+                            <td>{player2OVR[i].getEconomy()}</td>
+                        </tr>
+                    ))
+                    }
+                </tbody>
+            </table> }
             <Footer/>
         </div>
     )

@@ -49,6 +49,9 @@ export let initTestTeams = () => {
 
     window.playerStats = []
     window.teamStats = []
+    window.players1 = playersMap1
+    window.players2 = playersMap2
+    
     let playerStats = window.playerStats
     let teamStats = window.teamStats
     teamStats[0] = {
@@ -84,10 +87,10 @@ export let initTestTeams = () => {
             let OVR1 = player1.getOVR()
             let OVR2 = player2.getOVR()
 
-            if (j===1) {
+           /*  if (j===1) {
                 continue
-            }
-            
+            } */
+
             //compare aggression to consistency, scaled by laning
             let agg1 = OVR1.getAggression()
             let agg2 = OVR2.getAggression()
