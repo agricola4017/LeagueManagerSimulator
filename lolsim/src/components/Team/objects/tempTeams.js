@@ -18,6 +18,16 @@ export let tempTeams = [
         OVR: 0,
         POT: 0,
         streak: 0,
+    },
+    {
+        position: 0,
+        name: 'my Team', 
+        region: "EU",
+        wins: 0,
+        losses: 0,
+        OVR: 0,
+        POT: 0, 
+        streak: 0,
     }
 ]
 

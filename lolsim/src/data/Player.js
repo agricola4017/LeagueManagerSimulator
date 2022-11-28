@@ -14,13 +14,10 @@ export class Player {
         this.team = optional["team"] !== null ? optional["team"]: "Free Agent"
         this.KDA = 0.00
         
+        //addPlayer here?
     }
 
-    getPlayers = function() {
-        return this.players
-    }
-
-    addPlayer = function(player) {
-        this.players.append(player)
+    getOVR = () => {
+        return this.OVR
     }
 }

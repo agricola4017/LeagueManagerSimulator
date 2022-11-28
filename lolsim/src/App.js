@@ -3,9 +3,11 @@ import Landing from './Landing'
 import {BrowserRouter  as Router, Route} from 'react-router-dom'
 import PlayerPage from './components/Player/PlayerPage'
 import TeamPage from './components/Team/TeamPage'
+import TestSimulatePage from './components/TestSimulate/TestSimulatePage'
 import ControlPanel from './components/ControlPanel'
 
 function App() {
+  window.clicked=false
   return (
     <>
     <ControlPanel/>
@@ -19,6 +21,10 @@ function App() {
             <TeamPage/>
           </>
         )}/>      
+        <Route path='/LeagueManagerSimulator/Test' exact render={(props) => (<> 
+            <TestSimulatePage/>
+          </>
+        )}/>
         <Route path='/about' component={About} />
     </Router>
     </>
