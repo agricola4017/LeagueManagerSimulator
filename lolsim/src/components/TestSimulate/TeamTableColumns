@@ -1,0 +1,12 @@
+export const TeamTableColumns = [
+    {
+        Header: 'Team1',
+        Footer: 'Team1',
+        accessor: 'team1',
+    },
+    {
+        Header: 'Team2',
+        Footer: 'Team2',
+        accessor: 'team2',
+    }
+]

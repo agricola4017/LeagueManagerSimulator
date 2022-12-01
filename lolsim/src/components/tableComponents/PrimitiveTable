@@ -1,0 +1,84 @@
+import Row from './Row'
+import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
+import  {useMemo } from 'react'
+import '../table.css'
+
+const PrimitiveTable = ( {elements, tableColumns} ) => {
+
+    const columns = useMemo(() => tableColumns, [tableColumns])
+    //use GROUPED_columns to group
+    
+    const data = useMemo(() => elements, [elements]) 
+
+    const autoResetPage = false;
+
+    const tableInstance = useTable({
+        columns, data,  autoResetPage //defCol shortcuts filter prop in playerocls
+    })
+
+    //players = JSON.parse(JSON.stringify(players))
+
+    const {getTableProps, getTableBodyProps, headerGroups, 
+        footerGroups, prepareRow} = tableInstance
+
+    return (
+        <>
+        <table className = 'table' {...getTableProps()}>
+            <thead >
+                {
+                    headerGroups.map((headerGroup)=> ( 
+                    <tr {...headerGroup.getHeaderGroupProps()}> 
+                    {
+                        headerGroup.headers.map((col) =>(
+                            <th {...col.getHeaderProps(col.getSortByToggleProps())}>
+                                {col.render('Header')}
+                            </th>
+                        ))
+                    }
+                         <th>
+                             Delete
+                        </th>
+
+                        <th>
+                            Edit 
+                        </th>
+                       
+                    </tr>
+                    ))
+                }      
+            </thead>
+            <tbody {...getTableBodyProps()}>
+                {
+                    page.map(row=> {
+                        prepareRow(row)
+                        return (
+                            <Row row={row} key={row.id}/>
+                        )
+                    })
+                }
+                
+            </tbody>
+            <tfoot>
+                {
+                    footerGroups.map(footerGroup => (
+                        <tr {...footerGroup.getFooterGroupProps()}>
+                            {
+                                footerGroup.headers.map(column=>(
+                                    <td {...column.getFooterProps()}>
+                                        {
+                                        column.render('Footer')
+                                        }
+                                    </td>
+                                ))
+                            }
+                        </tr>
+                    ))
+                    
+                }
+            </tfoot>
+        </table>
+        </>
+    )
+}
+
+export default PrimitiveTable

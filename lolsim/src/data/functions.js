@@ -26,3 +26,17 @@ export let rollGreaterThanPercentile = (bound, percentile) => {
     //logarithmic?
     return randomNumberCustom(bound, 100) > percentile
 }
+
+export let rollPercentile = (percentile) => {
+    return randomNumber0(101) > 100 - percentile
+}
+
+export let addIfPositive = (arr) => {
+    let sum = 0
+    arr.forEach(element => {
+       if (element>0) {
+        sum+=element
+       } 
+    });
+    return sum
+}
