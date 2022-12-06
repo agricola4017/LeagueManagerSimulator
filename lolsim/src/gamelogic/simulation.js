@@ -5,10 +5,22 @@ import { rollPercentile } from "../data/functions";
 
 export let initTestTeams = () => {
 
-    let playersMap1 = new Map(); //map should be team id to player id? or maybe store by teamid+role, delete when swapping
-    let playersMap2 = new Map();
+    let playersMap1 = new Map() //map should be team id to player id? or maybe store by teamid+role, delete when swapping
+    let playersMap2 = new Map()
+    let playersMaps = []
+    playersMaps.push(playersMap1)
+    playersMaps.push(playersMap2)
+
+    let teamArr = []
     let team1 = new Team("team1", playersMap1)
     let team2 = new Team("team2", playersMap2)
+    teamArr.push(team1)
+    teamArr.push(team2)
+
+    for (let i = 3; i < 11; i++) {
+        playersMaps.push(new Map())
+        teamArr.push(new Team("team"+i, playersMaps[i-1]))
+    }
 
     for (let i = 0; i < 5; i++) { 
         let age = 17
@@ -21,24 +33,36 @@ export let initTestTeams = () => {
         let optional2 = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor, "team": "team2"}
         playersMap1.set("team" + 1 + "player"+i, new testPlayer("team" + 1 + "player"+i, optional1))
         playersMap2.set("team" + 2 + "player"+i, new testPlayer("team" + 2 + "player"+i, optional2))
+
+        for (let k = 2; k < 10; k++) {
+            let j = k+1
+            let optional = {"age":age, "region": region, "role": role, "OVR": OVR, "POT": POT, "askingFor": askingFor, "team": "team"+j}
+            playersMaps[k].set("team" + j + "player"+i, new testPlayer("team" + j + "player"+i, optional))
+        }
     }
 
-    console.log(team1.getPlayers())
-    console.log(team2.getPlayers())
+    //window.playerStats = []
+    //window.teamStats = []
+    window.gameLog = [] 
+    
+    //window.players1 = playersMap1
+    //window.players2 = playersMap2
+    window.players = playersMaps
+    window.gameLog = []
 
-    window.playerStats = []
-    window.teamStats = []
-    window.players1 = playersMap1
-    window.players2 = playersMap2
-
-    playGame(playersMap1, playersMap2)
+    playGame(playersMap1, playersMap2, 1,2)
 }
 
-let playGame = (playersMap1, playersMap2) => {
+let playGame = (playersMap1, playersMap2, team1Index, team2Index) => {
+    
+    let team1StatsIndex = 0
+    let team2StatsIndex = 1
+
     console.log("Simulating Game begin")
     let goldDiff=0
-    let playerStats = window.playerStats
-    let teamStats = window.teamStats
+    let playerStats = []
+    let teamStats = []
+    
     teamStats[0] = {
         win: false,
         kills: 0, 
@@ -53,8 +77,14 @@ let playGame = (playersMap1, playersMap2) => {
     }
     for (let i = 0; i < 10; i++) {
         playerStats[i] = {kills: 0, deaths:0, cs:0, gold:0}
-    }
-    
+     }
+
+     let currentGameLog = {
+        "teamStats": teamStats,
+        "playerStats": playerStats,
+        "team1Index": team1Index,
+        "team2Index": team2Index
+     }
 
         //lane phase
     //simulate 20 minutes
@@ -66,6 +96,9 @@ let playGame = (playersMap1, playersMap2) => {
     */
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 5 ; j++) {
+
+            let player1Index = j
+            let player2Index = j + 5
             
             const waveGold = 280
             let waveValue = (economy) => { //should be random actually
@@ -78,8 +111,8 @@ let playGame = (playersMap1, playersMap2) => {
             //percentage chance based on aggression someone dies 
             //consistency will prevent solokill 
             //economy built through cs, each wave is 7 cs (if someone dies they lose 7 cs)
-            let player1 = playersMap1.get("team1player"+j)
-            let player2 = playersMap2.get("team2player"+j)
+            let player1 = playersMap1.get("team" + team1Index + "player"+j)
+            let player2 = playersMap2.get("team" + team2Index + "player"+j)
             let OVR1 = player1.getOVR()
             let OVR2 = player2.getOVR()
 
@@ -97,20 +130,20 @@ let playGame = (playersMap1, playersMap2) => {
             let econ1 = OVR1.getEconomy()
             let econ2 = OVR2.getEconomy()
 
-            playerStats[j]["gold"] += waveValue(econ1)
-            playerStats[j+5]["gold"]+=waveValue(econ2)
-            teamStats[0]["gold"]+=waveValue(econ1)
-            teamStats[1]["gold"]+=waveValue(econ2)
+            playerStats[player1Index]["gold"] += waveValue(econ1)
+            playerStats[player2Index]["gold"]+=waveValue(econ2)
+            teamStats[team1StatsIndex]["gold"]+=waveValue(econ1)
+            teamStats[team2StatsIndex]["gold"]+=waveValue(econ2)
 
-            const percentageKill = 10
+            const percentageKill = 8
 
             //higher lane stat = more kills 
             //lane should probably be comprised of multiple stats
             let calculateKill = (lanx, lany, aggx, consy) => {
                 let landiff = (lanx > 50 ? .8*(lanx - lany) : 0.6*(lanx - lany)) //need to scale this more logarithmically
-                let varInfl = 0.15
+                let varInfl = 0.4
                 let divider = (100/varInfl)
-                let aggcondiff = (aggx/divider + 0.9)/(consy/divider + 0.9)
+                let aggcondiff = (aggx/divider + 0.8)/(consy/divider + 0.8)
                     //both vars should map near 1 ratio (0-100) -> (.9, 1.1)
                 //(aggx > 50 ? (aggx - consy) : 0.8*(aggx - consy))
                 return aggcondiff*landiff
@@ -127,14 +160,14 @@ let playGame = (playersMap1, playersMap2) => {
             if (soloKill) {
                 goldDiff+=3 //kill
                 goldDiff+=1.2 //cs
-                playerStats[j]["kills"]+=1
-                playerStats[j]["gold"]+=killValue
-                teamStats[0]["kills"]+=1
-                teamStats[1]["deaths"]+=1
-                playerStats[j+5]["deaths"]+=1
-                playerStats[j+5]["gold"]-=waveValue(econ2)*econlossRatio(econ2)
-                teamStats[0]["gold"] += killValue
-                teamStats[1]["gold"]-= waveValue(econ2)*econlossRatio(econ2)
+                playerStats[player1Index]["kills"]+=1
+                playerStats[player1Index]["gold"]+=killValue
+                teamStats[team1StatsIndex]["kills"]+=1
+                teamStats[team2StatsIndex]["deaths"]+=1
+                playerStats[player2Index]["deaths"]+=1
+                playerStats[player2Index]["gold"]-=waveValue(econ2)*econlossRatio(econ2)
+                teamStats[team1StatsIndex]["gold"] += killValue
+                teamStats[team2StatsIndex]["gold"]-= waveValue(econ2)*econlossRatio(econ2)
             }
             let soloKill2 = //rollGreaterThanPercentile(calculateKill(lan2, lan1, agg2, cons1), percentageKill)
                 rollPercentile(calculateKill(lan2, lan1, agg2, cons1)) || rollPercentile(percentageKill)
@@ -142,25 +175,23 @@ let playGame = (playersMap1, playersMap2) => {
             if (soloKill2) {
                 goldDiff-=3 //kill
                 goldDiff-=1.2 //cs
-                playerStats[j+5]["kills"]+=1
-                playerStats[j+5]["gold"]+=killValue
-                teamStats[1]["kills"]+=1
-                teamStats[0]["deaths"]+=1
-                playerStats[j]["deaths"]+=1
-                playerStats[j]["gold"]-=waveValue(econ1)*econlossRatio(econ1)
-                teamStats[1]["gold"] += killValue
-                teamStats[0]["gold"]-= waveValue(econ1)*econlossRatio(econ1)
+                playerStats[player2Index]["kills"]+=1
+                playerStats[player2Index]["gold"]+=killValue
+                teamStats[team2StatsIndex]["kills"]+=1
+                teamStats[team1StatsIndex]["deaths"]+=1
+                playerStats[player1Index]["deaths"]+=1
+                playerStats[player1Index]["gold"]-=waveValue(econ1)*econlossRatio(econ1)
+                teamStats[team2StatsIndex]["gold"] += killValue
+                teamStats[team1StatsIndex]["gold"]-= waveValue(econ1)*econlossRatio(econ1)
 
             }
-
-
             //solo kill is rare, <20%  chance it happens maybe
         }
     }
     if (goldDiff > 0) {
-        teamStats[0]["win"] = true
+        teamStats[team1StatsIndex]["win"] = true
     } else {
-        teamStats[1]["win"] = true
+        teamStats[team2StatsIndex]["win"] = true
     }
     //console.log(teamStats)
     //console.log(playerStats)
@@ -171,4 +202,8 @@ let playGame = (playersMap1, playersMap2) => {
     while (false) {
 
     }
+    
+    console.log(currentGameLog)
+    window.gameLog.push(currentGameLog)
+    console.log(window.gameLog)
 }

@@ -1,6 +1,6 @@
-import Row from './Row'
-import {useTable, useSortBy, useGlobalFilter, useFilters, usePagination} from 'react-table'
-import  {useMemo } from 'react'
+import ConstRow from './ConstRow'
+import { useTable } from 'react-table'
+import  { useMemo } from 'react'
 import '../table.css'
 
 const PrimitiveTable = ( {elements, tableColumns} ) => {
@@ -18,7 +18,7 @@ const PrimitiveTable = ( {elements, tableColumns} ) => {
 
     //players = JSON.parse(JSON.stringify(players))
 
-    const {getTableProps, getTableBodyProps, headerGroups, 
+    const {getTableProps, getTableBodyProps, headerGroups, rows,
         footerGroups, prepareRow} = tableInstance
 
     return (
@@ -30,35 +30,32 @@ const PrimitiveTable = ( {elements, tableColumns} ) => {
                     <tr {...headerGroup.getHeaderGroupProps()}> 
                     {
                         headerGroup.headers.map((col) =>(
-                            <th {...col.getHeaderProps(col.getSortByToggleProps())}>
+                            <th {...col.getHeaderProps()}>
                                 {col.render('Header')}
                             </th>
                         ))
                     }
-                         <th>
-                             Delete
-                        </th>
-
-                        <th>
-                            Edit 
-                        </th>
-                       
                     </tr>
                     ))
                 }      
             </thead>
             <tbody {...getTableBodyProps()}>
                 {
-                    page.map(row=> {
+                    rows.map(row=> {
                         prepareRow(row)
                         return (
-                            <Row row={row} key={row.id}/>
+                            <ConstRow row={row} key={row.id}/>
                         )
                     })
                 }
                 
             </tbody>
-            <tfoot>
+            
+        </table>
+        </>
+    )
+
+/*     <tfoot>
                 {
                     footerGroups.map(footerGroup => (
                         <tr {...footerGroup.getFooterGroupProps()}>
@@ -75,10 +72,7 @@ const PrimitiveTable = ( {elements, tableColumns} ) => {
                     ))
                     
                 }
-            </tfoot>
-        </table>
-        </>
-    )
+            </tfoot> */
 }
 
 export default PrimitiveTable

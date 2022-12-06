@@ -1,25 +1,33 @@
 import Footer from '../Footer'
 import { roleEnum } from '../../data/Enums'
-import PrimitiveTable from '../tableComponents/Table'
-import TeamTableColumns from './TeamTableColumns'
+import PrimitiveTable from '../tableComponents/PrimitiveTable'
+import { TeamTableColumns } from './TeamTableColumns'
 
 const TestSimulatePage = () => {
 
     try {
-        let playerStats = window.playerStats
-        let teamStats = window.teamStats
-        let player1OVR = Array.from(window.players1.values()).map(e=>e.getOVR())
-        let player2OVR = Array.from(window.players2.values()).map(e=>e.getOVR())
+        let gameLog = window.gameLog[0]
+        let playerStats = gameLog.playerStats
+        let teamStats = gameLog.teamStats
+        let team1Index = gameLog.team1Index
+        let team2Index = gameLog.team2Index
+        let player1OVR = Array.from(window.players[team1Index].values()).map(e=>e.getOVR())
+        let player2OVR = Array.from(window.players[team2Index].values()).map(e=>e.getOVR())
 
         let style1 = teamStats[0]["win"] ? {color:"green"} : {}
         let style2 = teamStats[1]["win"] ? {color:"green"} : {}
 
-        //<PrimitiveTable elements={[]} tableColumns={TeamTableColumns}></PrimitiveTable>
-        //how does this work again lol?
+        let table1Elements =  [{"col1": "Gold", "team1": teamStats[0]["gold"], "team2": teamStats[1]["gold"]}]
+        table1Elements.push({"col1": "K/D", "team1": teamStats[0]["kills"] + "-" + teamStats[0]["deaths"], "team2": teamStats[1]["kills"] + "-" + teamStats[1]["deaths"]})
+        let table1Columns = TeamTableColumns("team " + team1Index, "team " + team2Index)
+        table1Columns = [{Header: "", accessor: "col1"}, ...table1Columns]
+        
         return (
-            
             <div className ='container'>
                 <h1> Game Log </h1>
+                <PrimitiveTable elements={table1Elements} tableColumns={table1Columns}></PrimitiveTable>
+                
+                <br></br>
                 <table> 
                     <tbody>
                         <tr>
