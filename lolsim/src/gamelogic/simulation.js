@@ -1,7 +1,7 @@
 import { testPlayer } from "../data/testPlayer";
 import { Team } from "../data/Team";
 import { roleEnum } from "../data/Enums";
-import { rollPercentile } from "../data/functions";
+import { randomNumber0, rollPercentile } from "../data/functions";
 
 export let initTestTeams = () => {
 
@@ -206,4 +206,39 @@ let playGame = (playersMap1, playersMap2, team1Index, team2Index) => {
     console.log(currentGameLog)
     window.gameLog.push(currentGameLog)
     console.log(window.gameLog)
+}
+
+//size 10
+let orderTeams = (teams) => {
+    let sequence = []
+    sequence.push(teams[2], teams[5])
+    sequence.push(teams[3], teams[4])
+
+    //first round losers, need to be async
+    let loserAI = teams[5]
+    let loserBI = teams[4]
+    sequence.push(teams[6], loserAI)
+    sequence.push(teams[7], loserBI)
+
+    //2nd round 
+    let winnerAI = teams[2]
+    let winnerBI = teams[3]
+    sequence.push(teams[1], winnerAI)
+    sequence.push(teams[0], winnerBI)
+
+    let winnerCI = teams[5]
+    let winnerDI = teams[4] 
+    let loserAII = teams[2]
+    let loserBII = teams[3]
+    sequence.push(winnerCI, loserAII)
+    sequence.push(winnerDI, loserBII)
+
+    let winnerAII = teams[1]
+    let winnerBII = teams[0]
+
+    //3rd round 
+}
+
+let returnWinner = (team1, team2) => {
+    return randomNumber0(1) == 0 ? [team1,team2] : [team2,team1]
 }
