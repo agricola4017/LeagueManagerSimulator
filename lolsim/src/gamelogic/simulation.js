@@ -209,36 +209,75 @@ let playGame = (playersMap1, playersMap2, team1Index, team2Index) => {
 }
 
 //size 10
-let orderTeams = (teams) => {
+let orderTeams = async (teams) => {
     let sequence = []
     sequence.push(teams[2], teams[5])
     sequence.push(teams[3], teams[4])
 
-    //first round losers, need to be async
-    let loserAI = teams[5]
-    let loserBI = teams[4]
+    //first round
+    let result = await returnWinner(sequence.shift())
+    let loserAI = result[1]
+    let winnerAI = result[0]
+    result = await returnWinner(sequence.shift())
+    let loserBI = result[1]
+    let winnerBI = result[0]
     sequence.push(teams[6], loserAI)
     sequence.push(teams[7], loserBI)
-
-    //2nd round 
-    let winnerAI = teams[2]
-    let winnerBI = teams[3]
     sequence.push(teams[1], winnerAI)
     sequence.push(teams[0], winnerBI)
+    
+        //losers round 1
+    result = await returnWinner(sequence.shift())
+    let winnerCI = result[0]
+    result = await returnWinner(sequence.shift())
+    let winnerDI = result[0]
 
-    let winnerCI = teams[5]
-    let winnerDI = teams[4] 
-    let loserAII = teams[2]
-    let loserBII = teams[3]
+
+    //second round
+    result = await returnWinner(sequence.shift())
+    let winnerAII = result[0]
+    let loserAII = result[1]
+    result = await returnWinner(sequence.shift())
+    let winnerBII = result[0]
+    let loserBII = result[1]
+
+        //losers round 2
     sequence.push(winnerCI, loserAII)
     sequence.push(winnerDI, loserBII)
+    sequence.push(winnerAII, winnerBII)
 
-    let winnerAII = teams[1]
-    let winnerBII = teams[0]
+    result = await returnWinner(sequence.shift())
+    let winnerCII = result[0]
+    result = await returnWinner(sequence.shift())
+    let winnerDII = result[0]
+    sequence.push(winnerCII, winnerDII)
 
     //3rd round 
+
+    result = await returnWinner(sequence.shift())
+    let winnerABIII = result[0]
+    let loserABIII = result[1]
+
+        //losers 3
+
+    result = await returnWinner(sequence.shift())
+    let winnerCDIII = result[0]
+    sequence.push(loserABIII, winnerCDIII)
+
+    // loser's finals
+
+    result = await returnWinner(sequence.shift())
+    let winnerCDABIII = result[0]
+
+    //finals
+
+    sequence.push(winnerABIII,winnerCDABIII)
+    result = await returnWinner(sequence.shift())
+    let winnerFinal = result[0]
+    let loserFinals = result[1]
+    
 }
 
-let returnWinner = (team1, team2) => {
+let returnWinner = async (team1, team2) => {
     return randomNumber0(1) == 0 ? [team1,team2] : [team2,team1]
 }
