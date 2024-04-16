@@ -10,6 +10,8 @@ const ControlPanel = () => {
     let [time, setTime] = useState(currentTime)
 
     let update = function() {
+        //send msg to server
+        //openWebSocketconnection();
         timeAdvance();
         updateTimes();
     }

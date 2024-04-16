@@ -5,12 +5,14 @@ import PlayerPage from './components/Player/PlayerPage'
 import TeamPage from './components/Team/TeamPage'
 import TestSimulatePage from './components/TestSimulate/TestSimulatePage'
 import ControlPanel from './components/ControlPanel'
+import { WebsocketConnection } from './gamelogic/WebsocketConnection'
 
 function App() {
   window.clicked=false
   return (
-    <>
+  <>
     <ControlPanel/>
+    <WebsocketConnection />
     <Router>
         <Route path='/LeagueManagerSimulator' component={Landing} />
         <Route path='/LeagueManagerSimulator/Players' exact render={(props) => (<> 

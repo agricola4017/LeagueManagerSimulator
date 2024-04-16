@@ -279,5 +279,5 @@ let orderTeams = async (teams) => {
 }
 
 let returnWinner = async (team1, team2) => {
-    return randomNumber0(1) == 0 ? [team1,team2] : [team2,team1]
+    return randomNumber0(1) === 0 ? [team1,team2] : [team2,team1]
 }
