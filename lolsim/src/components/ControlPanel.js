@@ -23,6 +23,7 @@ const ControlPanel = () => {
 
     let test = () => {
         window.clicked=true
+        console.log(window.clicked)
         initTestTeams()
     }
 

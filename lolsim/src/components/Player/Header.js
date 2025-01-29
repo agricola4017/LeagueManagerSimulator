@@ -1,10 +1,12 @@
 import Button from '../Button'
 import PropTypes from 'prop-types'
-//import {useLocation} from 'react-router-dom'
 
-const Header = ({showAdd, onAdd, resetParams}) => {
-    //const location = useLocation()
-    let clickFunction = () => {
+const Header = ({
+    showAdd = false,
+    onAdd = () => console.log('Add clicked'),
+    resetParams = () => {}
+}) => {
+    const handleClick = () => {
         onAdd()
         if (showAdd) {
             resetParams()
@@ -14,20 +16,19 @@ const Header = ({showAdd, onAdd, resetParams}) => {
     return (
         <header className='header'>
             <h1>Players</h1>
-            {<Button onClick={clickFunction} color={!   showAdd ? 'red' : 'green'}
-             text={showAdd ?  'Close': 'Add'} />}
+            <Button
+                onClick={handleClick}
+                color={!showAdd ? 'red' : 'green'}
+                text={showAdd ? 'Close' : 'Add'}
+            />
         </header>
     )
 }
 
-export default Header
-
-Header.defaultProps = {
-    onClick: ()=> {
-        console.log('clicked')
-    }
-}
-
 Header.propTypes = {
-    onClick: PropTypes.func
+    showAdd: PropTypes.bool,
+    onAdd: PropTypes.func,
+    resetParams: PropTypes.func
 }
+
+export default Header

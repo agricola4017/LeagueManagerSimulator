@@ -5,116 +5,95 @@ import AddPlayer from './AddPlayer'
 import { PlayerColumns } from './PlayerColumns'
 import Footer from '../Footer'
 import { tempPlayers } from './objects/tempPlayers.js'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { loadPlayerJSON } from '../../data/loadJSON'
 
-
 const PlayerPage = () => {
+    const [players, setPlayers] = useState(() => loadPlayerJSON(tempPlayers))
+    const [showAddPlayer, setShowAddPlayer] = useState(false)
+    const [showDonut, setShowDonut] = useState(false)
+    const [playerParams, setPlayerParams] = useState({})
 
-    let initPlayers = loadPlayerJSON(tempPlayers)
+    const addPlayer = useCallback((player) => {
+        setPlayers(prevPlayers => [...prevPlayers, player])
+    }, [])
 
-    const [players, setPlayers] = useState(
-        initPlayers, []
-      )
-      const [showAddPlayer, setShowAddPlayer] = useState(false)
-      const [showDonut, setShowDonut] = useState(false)
-    
-      const addPlayer = async(player) => {
-        setPlayers(players => [...players, player])
-      }
+    const deletePlayer = useCallback((id) => {
+        setPlayers(prevPlayers => {
+            const newPlayers = [...prevPlayers]
+            newPlayers.splice(id, 1)
+            return newPlayers
+        })
+    }, [])
 
-      const deletePlayer = async (id) => {
-        players.splice(id, 1)
-        setPlayers([...players])
-      }
-      
-
-      const updatePlayer = async (playerValues, PlayerId) => {
-        updatePlayerParams({role: playerValues["role"]})
-        updatePlayerParams({name: playerValues["name"]})
-        updatePlayerParams({age: playerValues["age"]})
-        updatePlayerParams({OVR: playerValues["OVR"]})
-        updatePlayerParams({POT: playerValues["POT"]})
-        updatePlayerParams({region: playerValues["region"]})
-        updatePlayerParams({team: playerValues["team"]})
-        updatePlayerParams({id : PlayerId})
-        setPlayerParams({...playerParams})
+    const updatePlayer = useCallback((playerValues, playerId) => {
+        const updatedParams = {
+            role: playerValues.role,
+            name: playerValues.name,
+            age: playerValues.age,
+            OVR: playerValues.OVR,
+            POT: playerValues.POT,
+            region: playerValues.region,
+            team: playerValues.team,
+            id: playerId
+        }
+        setPlayerParams(updatedParams)
         setShowAddPlayer(true)
-      }
+    }, [])
 
-      const changePlayer = async (player, id) => {
-        players.splice(id, 1, player)
-        setPlayers([...players])
-
+    const changePlayer = useCallback((player, id) => {
+        setPlayers(prevPlayers => {
+            const newPlayers = [...prevPlayers]
+            newPlayers.splice(id, 1, player)
+            return newPlayers
+        })
         resetParams()
-      }
+    }, [])
 
-      let resetParams = () => {
+    const resetParams = useCallback(() => {
         setPlayerParams({})
-      }
+    }, [])
 
-      /* const initPlayerParams = {changed: false}
-      const [playerParams, updatePlayerParams] = useReducer( (state, updates) => 
-        ({...state, ...updates}), {}) */
+    const toggleAddPlayer = useCallback(() => {
+        setShowAddPlayer(prev => !prev)
+    }, [])
 
-      let [playerParams, setPlayerParams] = useState();
-      let updatePlayerParams = (updates) => {
-        playerParams = {...playerParams, ...updates}
-      }
+    const toggleDonut = useCallback(() => {
+        setShowDonut(prev => !prev)
+    }, [])
 
     return (
-        <div className ='container'>
-            <Header onAdd={ () => setShowAddPlayer(!showAddPlayer)} showAdd={showAddPlayer} resetParams={resetParams} />
-            {showAddPlayer && <AddPlayer onAdd={addPlayer} onUpdate={changePlayer} playerParams={playerParams} setShowAddPlayer={setShowAddPlayer}/>}
-            <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
-            {players.length > 0 ? <Table elements={players} onDelete={deletePlayer} onUpdate={updatePlayer} tableColumns={PlayerColumns}/> : 'No players to show'}
-            <Footer/>
+        <div className='container'>
+            <Header 
+                onAdd={toggleAddPlayer}
+                showAdd={showAddPlayer}
+                resetParams={resetParams}
+            />
+            {showAddPlayer && (
+                <AddPlayer
+                    onAdd={addPlayer}
+                    onUpdate={changePlayer}
+                    playerParams={playerParams}
+                    setShowAddPlayer={setShowAddPlayer}
+                />
+            )}
+            <Donut
+                onChange={toggleDonut}
+                showDonut={showDonut}
+            />
+            {players.length > 0 ? (
+                <Table
+                    elements={players}
+                    onDelete={deletePlayer}
+                    onUpdate={updatePlayer}
+                    tableColumns={PlayerColumns}
+                />
+            ) : (
+                'No players to show'
+            )}
+            <Footer />
         </div>
     )
 }
-
-      /* useEffect(() => {
-        const getPlayers  = async() => {
-          const playersFromServer = await fetchPlayers() 
-          setPlayers(playersFromServer)
-        }
-      }, []) */
-    
-      
-      // not used, for server/client impl 
-      /** 
-      const fetchPlayers = async() => {
-        const res = await fetch('http://localhost:8080/api/v1/player')
-        const data = await res.json()
-        return data
-      }
-    
-      const fetchPlayer = async(id) => {
-        const res = await fetch(`http://localhost:8080/api/v1/player/${id}`)
-        const data = await res.json()
-        return data
-      }
-    
-      const addPlayerREST = async(player) => {
-        console.log(player)
-        const res = await fetch('http://localhost:8080/api/v1/player/', { method:'POST', 
-        headers: {
-          'Content-type': 'application/json'
-        }, 
-        body: JSON.stringify(player)
-        })
-    
-        const data = await res.json
-        setPlayers(...players, data)
-      }
-      
-      const deletePlayerREST = async (id) => {
-        await fetch(`http://localhost:8080/api/v1/player/${id}`, { method: 'DELETE',})
-    
-        setPlayers(players.filter((player) => player.id !== parseInt(id)))
-        //console.log(players, id)
-        //console.log(players.filter((player) => player.key !== parseInt(id)))
-      } 
-    */
 
 export default PlayerPage

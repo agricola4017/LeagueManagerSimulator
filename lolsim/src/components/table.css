@@ -27,3 +27,20 @@ table th, tfoot td {
 table td {
   font-size: 12px
 }
+
+.header-content {
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-content {
+    padding: 4px;
+    cursor: default;
+}
+
+.filter-content input {
+    cursor: text;
+}

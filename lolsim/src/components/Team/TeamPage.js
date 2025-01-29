@@ -3,29 +3,39 @@ import {Donut} from '../Donut'
 import { TeamColumns } from './TeamColumns'
 import Footer from '../Footer'
 import { tempTeams } from './objects/tempTeams'
-import {useState} from 'react'
+import {useState, useCallback} from 'react'
 import { loadTeamJSON } from '../../data/loadJSON'
 
-
 const TeamPage = () => {
+    const [teams, setTeams] = useState(() => loadTeamJSON(tempTeams))
+    const [showDonut, setShowDonut] = useState(false)
 
-    let initTeams = loadTeamJSON(tempTeams)
+    const updateTeam = useCallback((teamValues, teamId) => {
+        // Implement team update logic here if needed
+        console.log('Update team:', teamValues, teamId)
+    }, [])
 
-    const [teams, setTeams] = useState(
-        initTeams, []
-      )
-      const [showDonut, setShowDonut] = useState(false)
-    
-
-      const updateTeam= async (playerValues) => {
-      }
+    const toggleDonut = useCallback(() => {
+        setShowDonut(prev => !prev)
+    }, [])
 
     return (
-        <div className ='container'>
-            <Donut onChange={() => setShowDonut(!showDonut)} showDonut={showDonut}/>
+        <div className='container'>
+            <Donut
+                onChange={toggleDonut}
+                showDonut={showDonut}
+            />
             <h1>Teams</h1>
-            {teams.length > 0 ? <Table elements={teams} tableColumns={TeamColumns}/> : 'No players to show'}
-            <Footer/>
+            {teams.length > 0 ? (
+                <Table
+                    elements={teams}
+                    tableColumns={TeamColumns}
+                    onUpdate={updateTeam}
+                />
+            ) : (
+                'No teams to show'
+            )}
+            <Footer />
         </div>
     )
 }

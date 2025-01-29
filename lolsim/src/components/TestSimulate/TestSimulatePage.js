@@ -27,6 +27,7 @@ const TestSimulatePage = () => {
                 <h1> Game Log </h1>
                 <PrimitiveTable elements={table1Elements} tableColumns={table1Columns}></PrimitiveTable>
                 
+                {/*
                 <br></br>
                 <table> 
                     <tbody>
@@ -48,8 +49,11 @@ const TestSimulatePage = () => {
                     </tbody>
                 </table>
 
-                <br></br>
+                
+                */}
 
+                <br></br>
+                
                 <table> 
                     <tbody>
                         <tr>
