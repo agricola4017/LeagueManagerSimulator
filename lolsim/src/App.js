@@ -16,7 +16,6 @@ function App() {
         
         <ControlPanel/>
         <Landing/>
-        {/* <WebsocketConnection /> */} 
         <Routes>
             <Route path='/LeagueManagerSimulator' element={
                 <>

@@ -22,119 +22,73 @@ const TestSimulatePage = () => {
         let table1Columns = TeamTableColumns("team " + team1Index, "team " + team2Index)
         table1Columns = [{Header: "", accessor: "col1"}, ...table1Columns]
         
+        const combatStatsElements = [0, 1, 2, 3, 4].map((i) => ({
+            name1: `team1player${i}`,
+            role1: roleEnum[i],
+            kills1: playerStats[i]["kills"],
+            deaths1: playerStats[i]["deaths"],
+            gold1: playerStats[i]["gold"],
+            name2: `team2player${i}`,
+            role2: roleEnum[i],
+            kills2: playerStats[i + 5]["kills"],
+            deaths2: playerStats[i + 5]["deaths"],
+            gold2: playerStats[i + 5]["gold"],
+            goldDiff: playerStats[i]["gold"] - playerStats[i + 5]["gold"],
+        }));
+
+        const combatStatsColumns = [
+            { Header: "Name", accessor: "name1" },
+            { Header: "Role", accessor: "role1" },
+            { Header: "Kills", accessor: "kills1" },
+            { Header: "Deaths", accessor: "deaths1" },
+            { Header: "Gold", accessor: "gold1" },
+            { Header: "Name", accessor: "name2" },
+            { Header: "Role", accessor: "role2" },
+            { Header: "Kills", accessor: "kills2" },
+            { Header: "Deaths", accessor: "deaths2" },
+            { Header: "Gold", accessor: "gold2" },
+            { Header: "Gold Diff", accessor: "goldDiff" }
+        ];
+
+        const ovrElements = [0, 1, 2, 3, 4].map((i) => ({
+            name1: `team1player${i}`,
+            role1: roleEnum[i],
+            agg1: player1OVR[i].getAggression(),
+            cons1: player1OVR[i].getConsistency(),
+            lane1: player1OVR[i].getLaning(),
+            econ1: player1OVR[i].getEconomy(),
+            name2: `team2player${i}`,
+            role2: roleEnum[i],
+            agg2: player2OVR[i].getAggression(),
+            cons2: player2OVR[i].getConsistency(),
+            lane2: player2OVR[i].getLaning(),
+            econ2: player2OVR[i].getEconomy(),
+        }));
+
+        const ovrColumns = [
+            { Header: "Name", accessor: "name1" },
+            { Header: "Role", accessor: "role1" },
+            { Header: "Agg", accessor: "agg1" },
+            { Header: "Cons", accessor: "cons1" },
+            { Header: "Lane", accessor: "lane1" },
+            { Header: "Econ", accessor: "econ1" },
+            { Header: "Name", accessor: "name2" },
+            { Header: "Role", accessor: "role2" },
+            { Header: "Agg", accessor: "agg2" },
+            { Header: "Cons", accessor: "cons2" },
+            { Header: "Lane", accessor: "lane2" },
+            { Header: "Econ", accessor: "econ2" }
+        ];
+
         return (
             <div className ='container'>
                 <h1> Game Log </h1>
-                <PrimitiveTable elements={table1Elements} tableColumns={table1Columns}></PrimitiveTable>
-                
-                {/*
-                <br></br>
-                <table> 
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td style={style1}>team1</td>
-                            <td style={style2}>team2</td>
-                        </tr>
-                        <tr>
-                            <td>gold</td>
-                            <td style={style1}>{teamStats[0]["gold"]}</td>
-                            <td style={style2}>{teamStats[1]["gold"]}</td>
-                        </tr>
-                        <tr>
-                            <td>K-D</td>
-                            <td style={style1}>{teamStats[0]["kills"] + "-" + teamStats[0]["deaths"]}</td>
-                            <td style={style2}>{teamStats[1]["kills"] + "-" + teamStats[1]["deaths"]}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                
-                */}
-
-                <br></br>
-                
-                <table> 
-                    <tbody>
-                        <tr>
-                            <td>name</td>
-                            <td>role</td>
-                            
-                            <td>kills</td>
-                            <td>deaths</td>
-                            <td>gold</td>
-                            <td>name</td>
-                            <td>role</td>
-                            
-                            <td>kills</td>
-                            <td>deaths</td> 
-                            <td>gold</td>
-                            <td>gold diff</td>
-                        </tr>
-                        {
-                        [0, 1, 2, 3, 4].map( (i) => (
-                            <tr key={i}>
-                                
-                                <td>team1player{i}</td>
-                                <td>{roleEnum[i]}</td>
-                                
-                                <td>{playerStats[i]["kills"]}</td>
-                                <td>{playerStats[i]["deaths"]}</td>
-                                <td>{playerStats[i]["gold"]}</td>
-
-                                <td>team2player{i}</td>
-                                <td>{roleEnum[i]}</td>
-                                
-                                <td>{playerStats[i+5]["kills"]}</td>
-                                <td>{playerStats[i+5]["deaths"]}</td>
-                                <td>{playerStats[i+5]["gold"]}</td>
-                                <td>{playerStats[i]["gold"] - playerStats[i+5]["gold"]}</td>
-                            </tr>
-                        ))
-                        }
-                    </tbody>
-                </table>
-
-                <br></br>
-
-                { <table> 
-                    <tbody>
-                        <tr>
-                            <td>name</td>
-                            <td>role</td>
-                            <td>agg</td>
-                            <td>cons</td>
-                            <td>lane</td>
-                            <td>econ</td>
-                            <td>name</td>
-                            <td>role</td>
-                            <td>agg</td>
-                            <td>cons</td>
-                            <td>lane</td>
-                            <td>econ</td>
-                        </tr>
-                        {
-                        [0, 1, 2, 3, 4].map( (i) => (
-                            <tr key={"OVR"+i}>
-                                
-                                <td>team1player{i}</td>
-                                <td>{roleEnum[i]}</td>
-                                <td>{player1OVR[i].getAggression()}</td>
-                                <td>{player1OVR[i].getConsistency()}</td>
-                                <td>{player1OVR[i].getLaning()}</td>
-                                <td>{player1OVR[i].getEconomy()}</td>
-
-                                <td>team2player{i}</td>
-                                <td>{roleEnum[i]}</td>
-                                <td>{player2OVR[i].getAggression()}</td>
-                                <td>{player2OVR[i].getConsistency()}</td>
-                                <td>{player2OVR[i].getLaning()}</td>
-                                <td>{player2OVR[i].getEconomy()}</td>
-                            </tr>
-                        ))
-                        }
-                    </tbody>
-                </table> }
+                <PrimitiveTable elements={table1Elements} tableColumns={table1Columns}/>
+                <br/>
+                <PrimitiveTable elements={combatStatsElements} tableColumns={combatStatsColumns}/>
+                <br/>
+                <PrimitiveTable elements={ovrElements} tableColumns={ovrColumns}/>
+                <br/>
                 <Footer/>
             </div>
         )
