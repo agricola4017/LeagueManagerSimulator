@@ -1,6 +1,6 @@
-//import ColumnFilter from './ColumnFilter'
+import { Link } from 'react-router-dom'
 
-export const TeamColumns = [
+export const TeamsColumns = [
     {
         Header: 'Position',
         Footer: 'Position',
@@ -11,6 +11,9 @@ export const TeamColumns = [
         Header: 'Name',
         Footer: 'Name',
         accessor: 'name',
+        Cell: ({row}) => (
+            <Link to={`/LeagueManagerSimulator/Teams/${row.original.name}`}> {row.original.name}</Link>
+        ),
         //Filter: ColumnFilter,
         disableFilters: false
     },

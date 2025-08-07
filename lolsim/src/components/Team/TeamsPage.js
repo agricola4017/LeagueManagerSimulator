@@ -1,12 +1,12 @@
 import Table from '../tableComponents/Table'
 import {Donut} from '../Donut'
-import { TeamColumns } from './TeamColumns'
+import { TeamsColumns } from './TeamsColumns'
 import Footer from '../Footer'
 import { tempTeams } from './objects/tempTeams'
 import {useState, useCallback} from 'react'
 import { loadTeamJSON } from '../../data/loadJSON'
 
-const TeamPage = () => {
+const TeamsPage = () => {
     const [teams, setTeams] = useState(() => loadTeamJSON(tempTeams))
     const [showDonut, setShowDonut] = useState(false)
 
@@ -29,7 +29,7 @@ const TeamPage = () => {
             {teams.length > 0 ? (
                 <Table
                     elements={teams}
-                    tableColumns={TeamColumns}
+                    tableColumns={TeamsColumns}
                     onUpdate={updateTeam}
                 />
             ) : (
@@ -40,4 +40,4 @@ const TeamPage = () => {
     )
 }
 
-export default TeamPage
+export default TeamsPage

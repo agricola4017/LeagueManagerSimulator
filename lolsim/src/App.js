@@ -2,12 +2,12 @@ import About from './About'
 import Landing from './Landing'
 import {BrowserRouter  as Router, Route, Routes} from 'react-router-dom'
 import PlayerPage from './components/Player/PlayerPage'
-import TeamPage from './components/Team/TeamPage'
+import TeamsPage from './components/Team/TeamsPage'
 import TestSimulatePage from './components/TestSimulate/TestSimulatePage'
 import ControlPanel from './components/ControlPanel'
 import { WebsocketConnection } from './gamelogic/WebsocketConnection'
 import BlankPage from './BlankPage'
-
+import TeamDetailPage from './components/Team/TeamDetailPage'
 
 function App() {
   window.clicked=false
@@ -29,12 +29,17 @@ function App() {
             } />
             <Route path='/LeagueManagerSimulator/Teams' element={
                 <>
-                    <TeamPage/>
+                    <TeamsPage/>
                 </>
             } />
             <Route path='/LeagueManagerSimulator/Test' element={
                 <>
                     <TestSimulatePage/>
+                </>
+            } />
+            <Route path='/LeagueManagerSimulator/Teams/:teamId' element={
+                <>
+                    <TeamDetailPage/>
                 </>
             } />
             <Route path='/about' element={<About />} />

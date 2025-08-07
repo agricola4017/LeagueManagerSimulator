@@ -8,6 +8,7 @@ export let tempTeams = [
         OVR: 0,
         POT: 0,
         streak: 0,
+        Players: []
     }, 
     {
         position: 0,
@@ -18,6 +19,7 @@ export let tempTeams = [
         OVR: 0,
         POT: 0,
         streak: 0,
+        Players: []
     },
     {
         position: 0,
@@ -28,6 +30,18 @@ export let tempTeams = [
         OVR: 0,
         POT: 0, 
         streak: 0,
+        Players: []
+    },
+    {
+        position: 0,
+        name: 'Chicago Bulls', 
+        region: "NA",
+        wins: 0,
+        losses: 0,
+        OVR: 0,
+        POT: 0, 
+        streak: 0,
+        Players: []
     }
 ]
 
